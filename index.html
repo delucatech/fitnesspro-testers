@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>FitnessPro test build 1.5</title>
+<style>html,body{margin:0;background:#ffffff;}</style>
+</head>
+<body>
+<div class="fp-install">
+  <style>
+    .fp-install { box-sizing: border-box; width: 100%; max-width: 720px; margin: 0 auto; padding: 20px 16px 40px; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #1f2328; font-size: 17px; line-height: 1.6; -webkit-text-size-adjust: 100%; overflow-wrap: anywhere; }
+    .fp-install *, .fp-install *::before, .fp-install *::after { box-sizing: inherit; }
+    .fp-install h1 { font-size: 1.6em; line-height: 1.25; margin: 0 0 10px; }
+    .fp-install h2 { font-size: 1.15em; line-height: 1.3; margin: 32px 0 10px; padding-bottom: 6px; border-bottom: 1px solid #d8dde3; }
+    .fp-install p { margin: 0 0 12px; }
+    .fp-install ol, .fp-install ul { padding-left: 22px; margin: 0 0 12px; }
+    .fp-install li { margin-bottom: 10px; }
+    .fp-install .fp-note { background: #fff8e6; border-left: 4px solid #f0b429; padding: 12px 14px; margin: 16px 0; border-radius: 6px; }
+    .fp-install .fp-warn { background: #fdecec; border-left: 4px solid #e5484d; padding: 12px 14px; margin: 16px 0; border-radius: 6px; }
+    .fp-install .fp-tip { background: #eaf3ff; border-left: 4px solid #3b82f6; padding: 12px 14px; margin: 16px 0; border-radius: 6px; }
+    .fp-install .fp-download { display: block; width: 100%; text-align: center; background: #e5484d; color: #fff !important; text-decoration: none; font-weight: 600; padding: 16px 20px; border-radius: 10px; font-size: 1.1em; margin: 16px 0 6px; }
+    .fp-install .fp-download:hover, .fp-install .fp-download:active { background: #cf3c41; }
+    .fp-install .fp-meta { color: #59636e; font-size: 0.9em; margin: 0 0 16px; text-align: center; }
+    .fp-install code { background: #eef1f4; padding: 1px 6px; border-radius: 4px; font-size: 0.95em; white-space: nowrap; }
+    .fp-install strong { font-weight: 600; }
+    .fp-install .fp-path { display: inline-block; background: #eef1f4; padding: 2px 8px; border-radius: 4px; }
+    @media (min-width: 600px) {
+      .fp-install { font-size: 16px; padding: 24px 16px; }
+      .fp-install h1 { font-size: 1.8em; }
+      .fp-install .fp-download { display: inline-block; width: auto; padding: 14px 28px; }
+      .fp-install .fp-meta { text-align: left; }
+    }
+  </style>
+
+  <h1>FitnessPro test build 1.5 for Android</h1>
+  <p>Thanks for helping test FitnessPro. This is an early build that is not in the Play Store, so Android will show a few warnings along the way. That is expected and safe to accept.</p>
+
+  <a class="fp-download" href="https://github.com/delucatech/fitnesspro-testers/releases/download/v1.5/FitnessPro-1.5.apk">Download FitnessPro-1.5.apk</a>
+  <p class="fp-meta">Version 1.5 test build &middot; about 52 MB &middot; Android 8 or newer recommended</p>
+
+  <div class="fp-warn"><strong>Already have an earlier test build?</strong> Open the downloaded file and tap <strong>Update</strong>. It installs right over the old version and keeps your profile, workouts, foods and stacks. <strong>Do not uninstall first</strong>, or that data is gone.</div>
+
+  <h2>New since 1.4</h2>
+  <ul>
+    <li><strong>Workout by muscle.</strong> A 3D body you can turn and zoom. Tap a muscle (or pick a group and then a part from the chips) to see the exercises that work it, then tap an exercise to open it. The chosen group shows in bright red and the exact part in a darker red. Find it on Home (scroll down, under "Show me examples"), on Train &rarr; Start a workout, on Your workouts, and under More &rarr; Learn.</li>
+    <li><strong>Maintenance calories.</strong> A new page shows how many calories keep your weight steady, based on your weight, height, age and activity level, with a slider to eat less (up to 1,000 under) or more (up to 500 over). It shows where that takes you against your goal date, how to get back on track if you are behind, how the target steps down as you lose weight, and your weigh-in history. Open it from the new <strong>Calories</strong> card on Home, the Calories card on Health &rarr; Nutrition (tap <strong>Adjust</strong>), your goal page, Profile, or More.</li>
+    <li><strong>Meal planner.</strong> Health &rarr; Nutrition &rarr; <strong>Meal planner</strong>: build a typical day as Breakfast, Lunch, Dinner and Snack, and watch the running total against your maintenance and target calories, with protein, carbs and fat. <strong>Log these meals for today</strong> copies the plan into today&rsquo;s food log.</li>
+    <li><strong>My meals.</strong> Health &rarr; Nutrition &rarr; <strong>My meals</strong>: save your own meals with calories, protein, carbs and fat (leave calories empty and they are worked out). Your meals show as one-tap choices when you log food or plan a meal. "Favourites" is now called My meals.</li>
+    <li><strong>Calories from a photo.</strong> In Add food and in the planner, <strong>Take photo</strong> or <strong>Choose photo</strong> of your plate. The app suggests a name, calories and macros for you to check and change; nothing is saved until you tap Save or Add. The photo is sent to Google Gemini for the estimate and is not kept in the app, so this needs an internet connection.</li>
+  </ul>
+
+  <h2>Fixed since 1.4</h2>
+  <ul>
+    <li><strong>Health tab buttons.</strong> "Supplements" no longer wraps onto two lines on smaller phones; the section buttons size to their text.</li>
+    <li><strong>Cut-off chips.</strong> Rows of chips (for example the sport chips on Train) no longer clip the row with the selected chip.</li>
+    <li><strong>Camera on newer Android.</strong> The camera option now shows on Android 11 and newer, for the food photo and for your profile picture.</li>
+    <li><strong>American spelling</strong> throughout (favorite, color, canceled and so on).</li>
+  </ul>
+
+  <h2>What you need</h2>
+  <ul>
+    <li>An Android phone from about 2017 or newer.</li>
+    <li>Around 250 MB of free space and a Wi-Fi connection for the download.</li>
+    <li>Your heart rate sensor (Polar OH1, Polar H9/H10, or any Bluetooth chest strap), charged, if you want to record a workout.</li>
+  </ul>
+
+  <h2>Install</h2>
+  <ol>
+    <li>Tap the download button above <strong>on your phone</strong>, in Chrome.</li>
+    <li>If Chrome says "This type of file can harm your device", tap <strong>Download anyway</strong>.</li>
+    <li>When the download finishes, tap the download notification. If you missed it, open the <strong>Files</strong> app and tap <code>FitnessPro-1.5.apk</code> in Downloads.</li>
+    <li>Android will say your phone is not allowed to install unknown apps from Chrome (or Files). Tap <strong>Settings</strong>, switch on <strong>Allow from this source</strong>, then press Back.</li>
+    <li>Tap <strong>Update</strong> (or <strong>Install</strong> on a phone that never had the app).</li>
+    <li>If Google Play Protect says "Unknown app" or suggests a scan, tap <strong>More details</strong> and then <strong>Install anyway</strong>. Letting it scan first is fine too.</li>
+    <li>Tap <strong>Open</strong>.</li>
+  </ol>
+  <div class="fp-note">Updating keeps you signed in: you go straight to Home with your data in place. You only see the welcome screens on a phone that never had the app.</div>
+
+  <h2>First run on a new phone</h2>
+  <ol>
+    <li>Go through the welcome and profile screens.</li>
+    <li>Put your sensor on and give it a minute to pick up your pulse.</li>
+    <li>Tap the <strong>heart icon</strong> at the top of the Home screen. This opens the Device page.</li>
+    <li>Tap scan and allow the <strong>Nearby devices</strong> permission when asked. On Android 11 or older it asks for <strong>Location</strong> instead. Allow it, because Android needs it for Bluetooth scanning.</li>
+    <li>The list will show your real sensor and also a fake one named <strong>"Polar OH1 E47A2B24 (simulated)"</strong>. Ignore the simulated one and tap your real sensor.</li>
+  </ol>
+
+  <h2>What to try this round</h2>
+  <ol>
+    <li><strong>Workout by muscle</strong> (Home, scroll down): drag to turn the body, pinch to zoom, use the turn-around button to see the back, tap a muscle, then pick a part from the chips. Open an exercise and come back. The body matches the sex in your profile.</li>
+    <li><strong>Calories card on Home</strong>: tap it. Check that the maintenance number looks right for you, move the slider, and see how the goal date line changes. Tap <strong>Log a weigh-in</strong> and check it appears in the history.</li>
+    <li>Health &rarr; Nutrition &rarr; <strong>My meals</strong>: create a meal with your own numbers, edit it, then log it from Add food with one tap.</li>
+    <li>Health &rarr; Nutrition &rarr; <strong>Meal planner</strong>: add a breakfast, lunch and dinner, check the total, then tap <strong>Log these meals for today</strong> and confirm they appear in today&rsquo;s log.</li>
+    <li>In Add food, tap <strong>Take photo</strong> and photograph a real meal (allow the camera when asked). Check the suggested name and numbers, correct them if needed, and save. Try <strong>Choose photo</strong> with a picture already in your gallery as well.</li>
+    <li>On the Health tab, check that all four section buttons (including Supplements) sit on one line.</li>
+  </ol>
+
+  <h2>What to report back</h2>
+  <ul>
+    <li>Your phone make, model and Android version (Settings &rarr; About phone).</li>
+    <li>Did the 3D body load, turn and respond to taps smoothly? Anything shaded oddly or hard to tap?</li>
+    <li>Did the Take photo button show up, and how close was the photo estimate to what you think the meal was? A screenshot of the result helps.</li>
+    <li>Did the maintenance calories and goal date make sense for you?</li>
+    <li>Anything that looked cramped, cut off or confusing, with a screenshot, and any error message word for word.</li>
+  </ul>
+
+  <h2>Uninstall</h2>
+  <p>Long-press the FitnessPro icon, tap <strong>App info</strong>, then <strong>Uninstall</strong>. This deletes all of your FitnessPro data on the phone, so only do it when you are done testing.</p>
+</div>
+</body>
+</html>
