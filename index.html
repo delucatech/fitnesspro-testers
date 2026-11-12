@@ -4,143 +4,279 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#0A0A0B">
+<meta name="color-scheme" content="dark">
 <title>FitnessPro test build 1.7</title>
-<style>html,body{margin:0;background:#ffffff;}</style>
+<style>html,body{margin:0;background:#0A0A0B;}</style>
 </head>
 <body>
 <div class="fp-install">
   <style>
-    .fp-install { box-sizing: border-box; width: 100%; max-width: 720px; margin: 0 auto; padding: 20px 16px 40px; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #1f2328; font-size: 17px; line-height: 1.6; -webkit-text-size-adjust: 100%; overflow-wrap: anywhere; }
-    .fp-install *, .fp-install *::before, .fp-install *::after { box-sizing: inherit; }
-    .fp-install h1 { font-size: 1.6em; line-height: 1.25; margin: 0 0 10px; }
-    .fp-install h2 { font-size: 1.15em; line-height: 1.3; margin: 32px 0 10px; padding-bottom: 6px; border-bottom: 1px solid #d8dde3; }
-    .fp-install p { margin: 0 0 12px; }
-    .fp-install ol, .fp-install ul { padding-left: 22px; margin: 0 0 12px; }
-    .fp-install li { margin-bottom: 10px; }
-    .fp-install .fp-note { background: #fff8e6; border-left: 4px solid #f0b429; padding: 12px 14px; margin: 16px 0; border-radius: 6px; }
-    .fp-install .fp-warn { background: #fdecec; border-left: 4px solid #e5484d; padding: 12px 14px; margin: 16px 0; border-radius: 6px; }
-    .fp-install .fp-tip { background: #eaf3ff; border-left: 4px solid #3b82f6; padding: 12px 14px; margin: 16px 0; border-radius: 6px; }
-    .fp-install .fp-download { display: block; width: 100%; text-align: center; background: #e5484d; color: #fff !important; text-decoration: none; font-weight: 600; padding: 16px 20px; border-radius: 10px; font-size: 1.1em; margin: 16px 0 6px; }
-    .fp-install .fp-download:hover, .fp-install .fp-download:active { background: #cf3c41; }
-    .fp-install .fp-meta { color: #59636e; font-size: 0.9em; margin: 0 0 16px; text-align: center; }
-    .fp-install code { background: #eef1f4; padding: 1px 6px; border-radius: 4px; font-size: 0.95em; white-space: nowrap; }
-    .fp-install strong { font-weight: 600; }
-    .fp-install .fp-path { display: inline-block; background: #eef1f4; padding: 2px 8px; border-radius: 4px; }
-    .fp-install li > ul { margin: 8px 0 0; }
-    .fp-install li > ul > li { margin-bottom: 6px; }
-    @media (min-width: 600px) {
-      .fp-install { font-size: 16px; padding: 24px 16px; }
-      .fp-install h1 { font-size: 1.8em; }
-      .fp-install .fp-download { display: inline-block; width: auto; padding: 14px 28px; }
-      .fp-install .fp-meta { text-align: left; }
+    @font-face { font-family: "Geist"; src: url("fonts/Geist-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+    @font-face { font-family: "Geist"; src: url("fonts/Geist-Medium.ttf") format("truetype"); font-weight: 500; font-display: swap; }
+    @font-face { font-family: "Geist"; src: url("fonts/Geist-SemiBold.ttf") format("truetype"); font-weight: 600; font-display: swap; }
+    @font-face { font-family: "Geist Mono"; src: url("fonts/GeistMono-Medium.ttf") format("truetype"); font-weight: 500; font-display: swap; }
+
+    /* Same tokens as the app: Resources/Styles/Colors.xaml */
+    .fp-install {
+      --bg: #0A0A0B; --surface: #141416; --elevated: #1C1C1F; --border: #2A2A2E; --border-strong: #3A3A40;
+      --text: #F5F5F7; --text-2: #A1A1AA; --text-3: #8A8A93;
+      --accent: #D4FF3A; --on-accent: #0A0A0B; --success: #34D399; --warning: #FBBF24; --error: #F43F5E;
+      box-sizing: border-box; width: 100%; margin: 0 auto; padding: 28px 20px 56px; background: var(--bg); color: var(--text-2);
+      font-family: "Geist", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.55;
+      -webkit-text-size-adjust: 100%; overflow-wrap: anywhere; -webkit-font-smoothing: antialiased; color-scheme: dark;
     }
+    .fp-install *, .fp-install *::before, .fp-install *::after { box-sizing: inherit; }
+    .fp-install .fp-wrap { max-width: 720px; margin: 0 auto; }
+    .fp-install strong { font-weight: 600; color: var(--text); }
+    .fp-install p { margin: 0 0 12px; }
+    .fp-install a { color: var(--text); text-underline-offset: 3px; }
+
+    .fp-install .fp-overline { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); margin: 0; }
+    .fp-install .fp-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+    .fp-install .fp-brand-mark { width: 36px; height: 36px; border-radius: 999px; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; font-weight: 600; font-size: 15px; }
+    .fp-install .fp-brand-name { color: var(--text); font-weight: 600; font-size: 17px; }
+    .fp-install h1 { font-size: 34px; line-height: 1.12; font-weight: 600; letter-spacing: -0.02em; color: var(--text); margin: 8px 0 12px; text-wrap: balance; }
+    .fp-install h1 .fp-num { font-family: "Geist Mono", ui-monospace, Consolas, monospace; font-weight: 500; color: var(--accent); letter-spacing: -0.04em; }
+    .fp-install .fp-lead { font-size: 16px; max-width: 60ch; }
+    .fp-install h2 { font-size: 22px; line-height: 1.25; font-weight: 600; letter-spacing: -0.01em; color: var(--text); margin: 44px 0 6px; text-wrap: balance; }
+    .fp-install .fp-sub { font-size: 14px; margin: 0 0 14px; }
+
+    .fp-install .fp-download { display: flex; align-items: center; justify-content: center; min-height: 56px; width: 100%; padding: 14px 28px; border-radius: 999px; background: var(--accent); color: var(--on-accent); font-weight: 600; font-size: 16px; text-decoration: none; margin: 22px 0 10px; transition: transform 150ms ease-out; }
+    .fp-install .fp-download:active { transform: scale(0.97); }
+    .fp-install .fp-download:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+    .fp-install .fp-meta { font-size: 13px; text-align: center; margin: 0; }
+    .fp-install .fp-meta span { font-family: "Geist Mono", ui-monospace, Consolas, monospace; color: var(--text); }
+
+    .fp-install .fp-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 16px; margin: 16px 0; }
+    .fp-install .fp-card > :last-child { margin-bottom: 0; }
+    .fp-install .fp-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text); margin: 0 0 8px; }
+    .fp-install .fp-badge::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--text-3); }
+    .fp-install .fp-warn .fp-badge::before { background: var(--error); }
+    .fp-install .fp-note .fp-badge::before { background: var(--warning); }
+    .fp-install .fp-tip .fp-badge::before { background: var(--success); }
+
+    /* Rows inside a card, like the app's stat rows: hairline between items */
+    .fp-install .fp-rows { list-style: none; margin: 16px 0; padding: 2px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+    .fp-install .fp-rows > li { padding: 14px 0; border-top: 1px solid var(--border); }
+    .fp-install .fp-rows > li:first-child { border-top: 0; }
+    .fp-install .fp-rows > li > strong:first-of-type { display: block; margin-bottom: 4px; }
+    .fp-install .fp-rows ul { margin: 10px 0 0; padding-left: 18px; }
+    .fp-install .fp-rows ul li { margin-bottom: 6px; font-size: 15px; }
+    .fp-install .fp-rows ul li::marker { color: var(--border-strong); }
+    .fp-install .fp-where { display: block; font-size: 13px; color: var(--text-3); margin-bottom: 4px; }
+
+    /* Numbered steps */
+    .fp-install .fp-steps { list-style: none; counter-reset: step; margin: 16px 0; padding: 2px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+    .fp-install .fp-steps > li { counter-increment: step; position: relative; padding: 14px 0 14px 44px; border-top: 1px solid var(--border); }
+    .fp-install .fp-steps > li:first-child { border-top: 0; }
+    .fp-install .fp-steps > li::before { content: counter(step); position: absolute; left: 0; top: 12px; width: 30px; height: 30px; border-radius: 999px; background: var(--elevated); border: 1px solid var(--border); color: var(--accent); font-family: "Geist Mono", ui-monospace, Consolas, monospace; font-weight: 500; font-size: 13px; display: grid; place-items: center; }
+    .fp-install code { font-family: "Geist Mono", ui-monospace, Consolas, monospace; font-size: 0.9em; background: var(--elevated); border: 1px solid var(--border); color: var(--text); padding: 1px 6px; border-radius: 6px; white-space: nowrap; }
+
+    /* Screenshots: a swipeable row on phones, a grid on wider screens */
+    .fp-install .fp-group { display: flex; align-items: baseline; justify-content: space-between; margin: 26px 0 12px; }
+    .fp-install .fp-swipe { font-size: 13px; color: var(--text-3); }
+    .fp-install .fp-shots { display: flex; gap: 12px; margin: 0 -20px; padding: 0 20px 6px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 20px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .fp-install .fp-shots::-webkit-scrollbar { display: none; }
+    .fp-install .fp-shots figure { flex: 0 0 64%; max-width: 250px; margin: 0; scroll-snap-align: start; }
+    .fp-install .fp-shots a { display: block; border-radius: 24px; }
+    .fp-install .fp-shots a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .fp-install .fp-shots img { display: block; width: 100%; height: auto; aspect-ratio: 600 / 1008; border-radius: 24px; border: 1px solid var(--border); background: var(--surface); }
+    .fp-install .fp-shots figcaption { padding: 10px 2px 0; font-size: 13px; line-height: 1.45; }
+    .fp-install .fp-shots figcaption b { display: block; font-weight: 500; font-size: 15px; color: var(--text); margin-bottom: 2px; }
+    .fp-install .fp-fine { font-size: 13px; color: var(--text-3); margin: 14px 0 0; }
+
+    @media (min-width: 700px) {
+      .fp-install { padding: 48px 24px 72px; }
+      .fp-install h1 { font-size: 44px; }
+      .fp-install .fp-download { width: auto; display: inline-flex; padding: 14px 36px; }
+      .fp-install .fp-meta { text-align: left; }
+      .fp-install .fp-swipe { display: none; }
+      .fp-install .fp-shots { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px 14px; margin: 0; padding: 0; overflow: visible; }
+      .fp-install .fp-shots figure { max-width: none; }
+      .fp-install .fp-shots img, .fp-install .fp-shots a { border-radius: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .fp-install .fp-download { transition: none; } }
   </style>
-  <h1>FitnessPro test build 1.7 for Android</h1>
-  <p>Thanks for helping test FitnessPro. This is an early build that is not in the Play Store, so Android will show a few warnings along the way. That is expected and safe to accept.</p>
 
-  <a class="fp-download" href="https://github.com/delucatech/fitnesspro-testers/releases/download/v1.7/FitnessPro-1.7.apk">Download FitnessPro-1.7.apk</a>
-  <p class="fp-meta">Version 1.7 test build &middot; about 54 MB &middot; Android 8 or newer recommended</p>
+  <div class="fp-wrap">
+    <div class="fp-brand"><span class="fp-brand-mark" aria-hidden="true">F</span><span class="fp-brand-name">FitnessPro</span></div>
 
-  <div class="fp-warn"><strong>Already have an earlier test build?</strong> Open the downloaded file and tap <strong>Update</strong>. It installs right over the old version and keeps your profile, workouts, foods and stacks. <strong>Do not uninstall first</strong>, or that data is gone.</div>
+    <p class="fp-overline">Android test build</p>
+    <h1>FitnessPro <span class="fp-num">1.7</span></h1>
+    <p class="fp-lead">Thanks for helping test FitnessPro. This is an early build that is not in the Play Store, so Android will show a few warnings along the way. That is expected and safe to accept.</p>
 
-  <h2>Fixed since 1.5 (your feedback)</h2>
-  <ul>
-    <li><strong>A walk no longer "disappears" when you leave the app.</strong> Before, pressing Back during a workout closed the screen, and reopening the app started on Home with no sign of the workout, even though it was still recording in the background (one walk ran for 7 hours this way). Now Back only puts the app in the background, and whenever the app is opened while a workout is recording it goes straight to that workout.</li>
-    <li><strong>A forgotten workout now stops itself.</strong>
-      <ul>
-        <li><strong>Driving:</strong> if a walk, hike or run is still recording when you drive off, it pauses after about a minute at driving speed, takes the drive off the workout and sends a "paused" notification. If you do not resume it within 20 minutes, it saves itself.</li>
-        <li><strong>Standing still:</strong> if an outdoor workout shows no movement for 10 minutes, it pauses. It resumes by itself when you move again and takes the idle minutes off. If you never stopped, tap <strong>Resume</strong> and nothing is removed. Left alone for an hour, it saves itself.</li>
-        <li><strong>Very long workouts:</strong> after 3 hours of recording (longer for hikes and rides) you get a "still recording?" reminder.</li>
-      </ul>
-    </li>
-    <li><strong>No more frozen screen or "FitnessPro isn't responding" on long workouts.</strong> The app was redrawing the whole GPS route every second, and after a long recording that locked the screen. Long workouts now stay responsive, and so does opening them afterwards.</li>
-    <li><strong>A workout survives the app being restarted.</strong> If Android restarts the app in the middle of a workout, the Train tab picks the workout up again instead of offering to start a new one.</li>
-    <li><strong>GPS comes back by itself.</strong> Switching Location off and on during a workout used to stop distance for the rest of that workout. It now picks up again within a few seconds.</li>
-  </ul>
+    <a class="fp-download" href="https://github.com/delucatech/fitnesspro-testers/releases/download/v1.7/FitnessPro-1.7.apk">Download FitnessPro-1.7.apk</a>
+    <p class="fp-meta">Version <span>1.7</span> &middot; about <span>54 MB</span> &middot; Android 8 or newer recommended</p>
 
-  <h2>New in 1.7</h2>
-  <ul>
-    <li><strong>Workout bank</strong> (Train &rarr; <strong>Workouts</strong>). Build a workout out of blocks such as a primer, a strength piece and a finisher. Each block can have a <strong>Base</strong>, a <strong>Scaled</strong> and a <strong>No equipment</strong> version, and the person doing the workout picks the level.
-      <ul>
-        <li><strong>Paste a class post.</strong> In a new workout, paste the text of a post into the paste box and tap <strong>Add blocks</strong>. Headings such as "Primer 3 Rds" or "4 RFT", and "Scaling" and "No Equipment Option" sections, are sorted into blocks for you.</li>
-        <li><strong>Post a workout for a day.</strong> Open a workout and tap <strong>Post for today</strong>, or pick another day. It shows on Home as <strong>Today's workout</strong> and on that day in the Calendar.</li>
-        <li><strong>Reuse.</strong> Save blocks and movements to the bank, give movements a video link, and start a timer straight from a block.</li>
-      </ul>
-    </li>
-    <li><strong>Label reader</strong> (Home &rarr; <strong>Scan a food label</strong>, or Health &rarr; Nutrition &rarr; <strong>Label reader</strong>). Take one photo of a package with the Nutrition Facts panel and the ingredient list in it. You get calories and macros at a glance, rings for saturated fat, sodium, added sugar and fiber, a protein quality score, fat quality, and notes on the ingredients.
-      <ul>
-        <li><strong>I ate this &middot; Add to today</strong> puts it in today's food log and keeps it for next time.</li>
-        <li><strong>Save for later</strong> only keeps the product. Today's totals do not change.</li>
-        <li>Saved products are listed under <strong>Previously scanned</strong> in the label reader and under Health &rarr; Nutrition &rarr; <strong>Scanned labels</strong>, so a regular snack can be added again without a photo.</li>
-      </ul>
-    </li>
-    <li><strong>Calendar.</strong> Days with a posted workout have a small ring in the month view, and the arrows in the day view now go forward up to 90 days, so tomorrow's workout can be posted ahead of time.</li>
-    <li><strong>At a glance moved up.</strong> Heart rate, Sleep, VO<sub>2</sub> max and Badges now sit near the top of Home, under Today.</li>
-    <li><strong>Timers are easy to find.</strong> On the Train tab there are three buttons under the workout types: <strong>Timers</strong> (For time, AMRAP, EMOM, Tabata, Intervals), <strong>Workouts</strong> and <strong>By muscle</strong>.</li>
-    <li><strong>Track distance for any workout.</strong> Pick a workout that normally has no GPS (CrossFit, Strength &amp; conditioning, HIIT and so on) and a <strong>Track distance</strong> switch appears. Turn it on to record the route, distance, speed and ascent, for example for a workout with runs in it. It is off by default and remembers your choice. It is meant for outdoors: indoors, GPS drifts and can invent distance.</li>
-  </ul>
+    <div class="fp-card fp-warn">
+      <p class="fp-badge">Already have a test build?</p>
+      <p>Open the downloaded file and tap <strong>Update</strong>. It installs right over the old version and keeps your profile, workouts, foods and stacks. <strong>Do not uninstall first</strong>, or that data is gone.</p>
+    </div>
 
-  <div class="fp-tip">The label reader and calories from a photo need an internet connection. The photo is sent to Google Gemini to be read, and a reading usually takes 5 to 30 seconds. Readings come from a photo, so compare them with the package.</div>
+    <h2>A look at what's new</h2>
+    <p class="fp-sub">Tap a screen to see it full size.</p>
 
-  <h2>Still in from 1.5</h2>
-  <ul>
-    <li><strong>Workout by muscle</strong>: the 3D body that lists exercises for the muscle you tap.</li>
-    <li><strong>Maintenance calories</strong>, the <strong>Meal planner</strong>, <strong>My meals</strong> and <strong>calories from a photo</strong> under Health &rarr; Nutrition.</li>
-  </ul>
+    <div class="fp-group"><p class="fp-overline">AI and nutrition</p><span class="fp-swipe" aria-hidden="true">Swipe &rarr;</span></div>
+    <div class="fp-shots" tabindex="0" role="group" aria-label="AI and nutrition screens">
+      <figure>
+        <a href="img/label-scan.webp"><img src="img/label-scan.webp" width="600" height="1008" alt="Label reader scanning a photo of a Nutrition Facts panel, with a progress list underneath."></a>
+        <figcaption><b>Label reader</b>One photo of the package starts the reading.</figcaption>
+      </figure>
+      <figure>
+        <a href="img/label-results.webp"><img src="img/label-results.webp" width="600" height="1008" loading="lazy" alt="Label reader results: protein quality ring, 240 calories, macros, and rings for saturated fat, sodium, added sugar and fiber."></a>
+        <figcaption><b>The label at a glance</b>Calories, macros, a protein quality score and % Daily Value rings.</figcaption>
+      </figure>
+      <figure>
+        <a href="img/photo-calories.webp"><img src="img/photo-calories.webp" width="600" height="1008" loading="lazy" alt="Add food sheet showing an estimate from a photo: toast, fried eggs and cherry tomatoes."></a>
+        <figcaption><b>Calories from a photo</b>Take a picture of a plate and the app estimates what is on it.</figcaption>
+      </figure>
+      <figure>
+        <a href="img/nutrition-day.webp"><img src="img/nutrition-day.webp" width="600" height="1008" loading="lazy" alt="Health tab, Nutrition: 350 of 2,693 calories, with protein, carbs and fat bars."></a>
+        <figcaption><b>Your day</b>Calories and macros against your maintenance target.</figcaption>
+      </figure>
+    </div>
 
-  <h2>What you need</h2>
-  <ul>
-    <li>An Android phone from about 2017 or newer.</li>
-    <li>Around 250 MB of free space and a Wi-Fi connection for the download.</li>
-    <li>Your heart rate sensor (Polar OH1, Polar H9/H10, or any Bluetooth chest strap), charged, if you want to record a workout.</li>
-  </ul>
+    <div class="fp-group"><p class="fp-overline">Training</p><span class="fp-swipe" aria-hidden="true">Swipe &rarr;</span></div>
+    <div class="fp-shots" tabindex="0" role="group" aria-label="Training screens">
+      <figure>
+        <a href="img/workout-bank.webp"><img src="img/workout-bank.webp" width="600" height="1008" loading="lazy" alt="A workout named Thursday class with a level picker for Base, Scaled and No equipment, and a Primer block of four movements."></a>
+        <figcaption><b>Workout bank</b>A pasted class post, sorted into blocks with three levels.</figcaption>
+      </figure>
+      <figure>
+        <a href="img/home.webp"><img src="img/home.webp" width="600" height="1008" loading="lazy" alt="Home screen with Today's totals, a Today's workout card, and At a glance tiles for heart rate and sleep."></a>
+        <figcaption><b>Today's workout</b>A posted workout shows on Home, with At a glance right below.</figcaption>
+      </figure>
+      <figure>
+        <a href="img/train.webp"><img src="img/train.webp" width="600" height="1008" loading="lazy" alt="Train tab with workout types and three tiles: Timers, Workouts and By muscle."></a>
+        <figcaption><b>Train tab</b>Timers, Workouts and By muscle sit under the workout types.</figcaption>
+      </figure>
+      <figure>
+        <a href="img/timers.webp"><img src="img/timers.webp" width="600" height="1008" loading="lazy" alt="Timers screen with For time, AMRAP, EMOM, Tabata and Intervals, and a 20 minute time cap."></a>
+        <figcaption><b>Timers</b>For time, AMRAP, EMOM, Tabata and Intervals.</figcaption>
+      </figure>
+      <figure>
+        <a href="img/by-muscle.webp"><img src="img/by-muscle.webp" width="600" height="1008" loading="lazy" alt="3D body with the chest highlighted in red and a list of chest exercises starting below."></a>
+        <figcaption><b>Workout by muscle</b>Tap a muscle on the 3D body to see the exercises that work it.</figcaption>
+      </figure>
+      <figure>
+        <a href="img/calendar.webp"><img src="img/calendar.webp" width="600" height="1008" loading="lazy" alt="Calendar month view with small rings on the days that have a posted workout."></a>
+        <figcaption><b>Calendar</b>A ring marks the days with a posted workout.</figcaption>
+      </figure>
+      <figure>
+        <a href="img/auto-pause.webp"><img src="img/auto-pause.webp" width="600" height="1008" loading="lazy" alt="A paused walk with the note: moving too fast for a walk, tap Resume if that is wrong, otherwise it saves itself in 20 minutes."></a>
+        <figcaption><b>Auto-pause</b>A walk that reaches driving speed pauses itself.</figcaption>
+      </figure>
+    </div>
+    <p class="fp-fine">Screens are from the Android build, with sample data.</p>
 
-  <h2>Install</h2>
-  <ol>
-    <li>If a workout is still recording in the old build, finish and save it first.</li>
-    <li>Tap the download button above <strong>on your phone</strong>, in Chrome.</li>
-    <li>If Chrome says "This type of file can harm your device", tap <strong>Download anyway</strong>.</li>
-    <li>When the download finishes, tap the download notification. If you missed it, open the <strong>Files</strong> app and tap <code>FitnessPro-1.7.apk</code> in Downloads.</li>
-    <li>Android will say your phone is not allowed to install unknown apps from Chrome (or Files). Tap <strong>Settings</strong>, switch on <strong>Allow from this source</strong>, then press Back.</li>
-    <li>Tap <strong>Update</strong> (or <strong>Install</strong> on a phone that never had the app).</li>
-    <li>If Google Play Protect says "Unknown app" or suggests a scan, tap <strong>More details</strong> and then <strong>Install anyway</strong>. Letting it scan first is fine too.</li>
-    <li>Tap <strong>Open</strong>.</li>
-  </ol>
-  <div class="fp-note">Updating keeps you signed in: you go straight to Home with your data in place. You only see the welcome screens on a phone that never had the app.</div>
+    <h2>Fixed since 1.5</h2>
+    <p class="fp-sub">From your feedback.</p>
+    <ul class="fp-rows">
+      <li><strong>A walk no longer "disappears" when you leave the app.</strong> Before, pressing Back during a workout closed the screen, and reopening the app started on Home with no sign of the workout, even though it was still recording in the background (one walk ran for 7 hours this way). Now Back only puts the app in the background, and whenever the app is opened while a workout is recording it goes straight to that workout.</li>
+      <li><strong>A forgotten workout now stops itself.</strong>
+        <ul>
+          <li><strong>Driving:</strong> if a walk, hike or run is still recording when you drive off, it pauses after about a minute at driving speed, takes the drive off the workout and sends a "paused" notification. If you do not resume it within 20 minutes, it saves itself.</li>
+          <li><strong>Standing still:</strong> if an outdoor workout shows no movement for 10 minutes, it pauses. It resumes by itself when you move again and takes the idle minutes off. If you never stopped, tap <strong>Resume</strong> and nothing is removed. Left alone for an hour, it saves itself.</li>
+          <li><strong>Very long workouts:</strong> after 3 hours of recording (longer for hikes and rides) you get a "still recording?" reminder.</li>
+        </ul>
+      </li>
+      <li><strong>No more frozen screen or "FitnessPro isn't responding" on long workouts.</strong> The app was redrawing the whole GPS route every second, and after a long recording that locked the screen. Long workouts now stay responsive, and so does opening them afterwards.</li>
+      <li><strong>A workout survives the app being restarted.</strong> If Android restarts the app in the middle of a workout, the Train tab picks the workout up again instead of offering to start a new one.</li>
+      <li><strong>GPS comes back by itself.</strong> Switching Location off and on during a workout used to stop distance for the rest of that workout. It now picks up again within a few seconds.</li>
+    </ul>
 
-  <h2>First run on a new phone</h2>
-  <ol>
-    <li>Go through the welcome and profile screens.</li>
-    <li>Put your sensor on and give it a minute to pick up your pulse.</li>
-    <li>Tap the <strong>heart icon</strong> at the top of the Home screen. This opens the Device page.</li>
-    <li>Tap scan and allow the <strong>Nearby devices</strong> permission when asked. On Android 11 or older it asks for <strong>Location</strong> instead. Allow it, because Android needs it for Bluetooth scanning.</li>
-    <li>The list will show your real sensor and also a fake one named <strong>"Polar OH1 E47A2B24 (simulated)"</strong>. Ignore the simulated one and tap your real sensor.</li>
-  </ol>
+    <h2>New in 1.7</h2>
+    <ul class="fp-rows">
+      <li><span class="fp-where">Train &rarr; Workouts</span><strong>Workout bank</strong> Build a workout out of blocks such as a primer, a strength piece and a finisher. Each block can have a <strong>Base</strong>, a <strong>Scaled</strong> and a <strong>No equipment</strong> version, and the person doing the workout picks the level.
+        <ul>
+          <li><strong>Paste a class post.</strong> In a new workout, paste the text of a post into the paste box and tap <strong>Add blocks</strong>. Headings such as "Primer 3 Rds" or "4 RFT", and "Scaling" and "No Equipment Option" sections, are sorted into blocks for you.</li>
+          <li><strong>Post a workout for a day.</strong> Open a workout and tap <strong>Post for today</strong>, or pick another day. It shows on Home as <strong>Today's workout</strong> and on that day in the Calendar.</li>
+          <li><strong>Reuse.</strong> Save blocks and movements to the bank, give movements a video link, and start a timer straight from a block.</li>
+        </ul>
+      </li>
+      <li><span class="fp-where">Home &rarr; Scan a food label &middot; Health &rarr; Nutrition &rarr; Label reader</span><strong>Label reader (AI)</strong> Take one photo of a package with the Nutrition Facts panel and the ingredient list in it. You get calories and macros at a glance, rings for saturated fat, sodium, added sugar and fiber, a protein quality score, fat quality, and notes on the ingredients.
+        <ul>
+          <li><strong>I ate this &middot; Add to today</strong> puts it in today's food log and keeps it for next time.</li>
+          <li><strong>Save for later</strong> only keeps the product. Today's totals do not change.</li>
+          <li>Saved products are listed under <strong>Previously scanned</strong> in the label reader and under Health &rarr; Nutrition &rarr; <strong>Scanned labels</strong>, so a regular snack can be added again without a photo.</li>
+        </ul>
+      </li>
+      <li><span class="fp-where">Calendar</span><strong>Posted days and planning ahead</strong> Days with a posted workout have a small ring in the month view, and the arrows in the day view now go forward up to 90 days, so tomorrow's workout can be posted ahead of time.</li>
+      <li><span class="fp-where">Home</span><strong>At a glance moved up</strong> Heart rate, Sleep, VO<sub>2</sub> max and Badges now sit near the top of Home, under Today.</li>
+      <li><span class="fp-where">Train</span><strong>Timers are easy to find</strong> There are three buttons under the workout types: <strong>Timers</strong> (For time, AMRAP, EMOM, Tabata, Intervals), <strong>Workouts</strong> and <strong>By muscle</strong>.</li>
+      <li><span class="fp-where">Train &rarr; CrossFit, Strength &amp; conditioning, HIIT and others</span><strong>Track distance for any workout</strong> Pick a workout that normally has no GPS and a <strong>Track distance</strong> switch appears. Turn it on to record the route, distance, speed and ascent, for example for a workout with runs in it. It is off by default and remembers your choice. It is meant for outdoors: indoors, GPS drifts and can invent distance.</li>
+    </ul>
 
-  <h2>What to try this round</h2>
-  <ol>
-    <li><strong>Paste a class workout.</strong> Train &rarr; <strong>Workouts</strong> &rarr; new workout. Paste one of your real posts into the paste box, tap <strong>Add blocks</strong>, check the blocks, and save. Did it sort the rounds, the scaled version and the no-equipment version the way you wrote them?</li>
-    <li><strong>Post it.</strong> Open the saved workout and tap <strong>Post for today</strong>. It should appear on Home as Today's workout. Then post one for tomorrow from the Calendar.</li>
-    <li><strong>Do it.</strong> Open today's workout, switch between Base, Scaled and No equipment, and start a timer from a block.</li>
-    <li><strong>Scan a label.</strong> Home &rarr; <strong>Scan a food label</strong> &rarr; <strong>Take photo</strong>. Try a protein bar or a cereal box. Compare the numbers with the package, then tap <strong>I ate this</strong> for one product and <strong>Save for later</strong> for another.</li>
-    <li><strong>Add a saved product again.</strong> Health &rarr; Nutrition &rarr; <strong>Scanned labels</strong>, and tap Add next to one.</li>
-    <li><strong>Leave and come back during a walk.</strong> Train &rarr; Walk &rarr; start. Press Back, or switch to your email or texts for a minute, and open FitnessPro again. You should land on the walk, with the time still counting.</li>
-    <li><strong>Forget a walk on purpose.</strong> At the end of an outdoor walk, do not finish it. Either get in the car and drive, or leave the phone on a table for 15 minutes. It should pause by itself and send a notification. Open the app and check that the walk's time and distance match the walking you really did.</li>
-    <li><strong>Track distance.</strong> Train &rarr; CrossFit &rarr; turn on <strong>Track distance</strong> &rarr; start, and move around outdoors.</li>
-  </ol>
+    <div class="fp-card fp-tip">
+      <p class="fp-badge">About the AI features</p>
+      <p>The label reader and calories from a photo need an internet connection. The photo is sent to Google Gemini to be read, and a reading usually takes 5 to 30 seconds. Readings come from a photo, so compare them with the package or the plate before saving.</p>
+    </div>
 
-  <h2>What to report back</h2>
-  <ul>
-    <li>Your phone make, model and Android version (Settings &rarr; About phone).</li>
-    <li><strong>Workout bank:</strong> a post that did not sort into blocks correctly. Send the post text and a screenshot of what the app made of it.</li>
-    <li><strong>Label reader:</strong> any number that did not match the package (a photo of the label helps), how long the reading took, and anything in the results that was confusing.</li>
-    <li><strong>Auto-pause:</strong> did a workout ever pause when you were still moving, or fail to pause when you drove off? What were you doing, and for how long?</li>
-    <li>Any freeze, or an "isn't responding" message: how long the workout had been running, and a screenshot.</li>
-    <li>Anything that looked cramped, cut off or confusing, with a screenshot, and any error message word for word.</li>
-  </ul>
+    <h2>Still in from 1.5</h2>
+    <ul class="fp-rows">
+      <li><strong>Workout by muscle</strong> The 3D body that lists exercises for the muscle you tap.</li>
+      <li><strong>Nutrition</strong> Maintenance calories, the Meal planner, My meals and calories from a photo, under Health &rarr; Nutrition.</li>
+    </ul>
 
-  <h2>Uninstall</h2>
-  <p>Long-press the FitnessPro icon, tap <strong>App info</strong>, then <strong>Uninstall</strong>. This deletes all of your FitnessPro data on the phone, so only do it when you are done testing.</p>
+    <h2>What you need</h2>
+    <ul class="fp-rows">
+      <li>An Android phone from about 2017 or newer.</li>
+      <li>Around 250 MB of free space and a Wi-Fi connection for the download.</li>
+      <li>Your heart rate sensor (Polar OH1, Polar H9/H10, or any Bluetooth chest strap), charged, if you want to record a workout.</li>
+    </ul>
+
+    <h2>Install</h2>
+    <ol class="fp-steps">
+      <li>If a workout is still recording in the old build, finish and save it first.</li>
+      <li>Tap the download button above <strong>on your phone</strong>, in Chrome.</li>
+      <li>If Chrome says "This type of file can harm your device", tap <strong>Download anyway</strong>.</li>
+      <li>When the download finishes, tap the download notification. If you missed it, open the <strong>Files</strong> app and tap <code>FitnessPro-1.7.apk</code> in Downloads.</li>
+      <li>Android will say your phone is not allowed to install unknown apps from Chrome (or Files). Tap <strong>Settings</strong>, switch on <strong>Allow from this source</strong>, then press Back.</li>
+      <li>Tap <strong>Update</strong> (or <strong>Install</strong> on a phone that never had the app).</li>
+      <li>If Google Play Protect says "Unknown app" or suggests a scan, tap <strong>More details</strong> and then <strong>Install anyway</strong>. Letting it scan first is fine too.</li>
+      <li>Tap <strong>Open</strong>.</li>
+    </ol>
+    <div class="fp-card fp-note">
+      <p class="fp-badge">Updating keeps your data</p>
+      <p>You go straight to Home with everything in place. You only see the welcome screens on a phone that never had the app.</p>
+    </div>
+
+    <h2>First run on a new phone</h2>
+    <ol class="fp-steps">
+      <li>Go through the welcome and profile screens.</li>
+      <li>Put your sensor on and give it a minute to pick up your pulse.</li>
+      <li>Tap the <strong>heart icon</strong> at the top of the Home screen. This opens the Device page.</li>
+      <li>Tap scan and allow the <strong>Nearby devices</strong> permission when asked. On Android 11 or older it asks for <strong>Location</strong> instead. Allow it, because Android needs it for Bluetooth scanning.</li>
+      <li>The list will show your real sensor and also a fake one named <strong>"Polar OH1 E47A2B24 (simulated)"</strong>. Ignore the simulated one and tap your real sensor.</li>
+    </ol>
+
+    <h2>What to try this round</h2>
+    <ol class="fp-steps">
+      <li><strong>Paste a class workout.</strong> Train &rarr; <strong>Workouts</strong> &rarr; new workout. Paste one of your real posts into the paste box, tap <strong>Add blocks</strong>, check the blocks, and save. Did it sort the rounds, the scaled version and the no-equipment version the way you wrote them?</li>
+      <li><strong>Post it.</strong> Open the saved workout and tap <strong>Post for today</strong>. It should appear on Home as Today's workout. Then post one for tomorrow from the Calendar.</li>
+      <li><strong>Do it.</strong> Open today's workout, switch between Base, Scaled and No equipment, and start a timer from a block.</li>
+      <li><strong>Scan a label.</strong> Home &rarr; <strong>Scan a food label</strong> &rarr; <strong>Take photo</strong>. Try a protein bar or a cereal box. Compare the numbers with the package, then tap <strong>I ate this</strong> for one product and <strong>Save for later</strong> for another.</li>
+      <li><strong>Add a saved product again.</strong> Health &rarr; Nutrition &rarr; <strong>Scanned labels</strong>, and tap Add next to one.</li>
+      <li><strong>Photograph a meal.</strong> Health &rarr; <strong>Add food</strong> &rarr; <strong>Take photo</strong>. Check the estimate against what was really on the plate before saving.</li>
+      <li><strong>Leave and come back during a walk.</strong> Train &rarr; Walk &rarr; start. Press Back, or switch to your email or texts for a minute, and open FitnessPro again. You should land on the walk, with the time still counting.</li>
+      <li><strong>Forget a walk on purpose.</strong> At the end of an outdoor walk, do not finish it. Either get in the car and drive, or leave the phone on a table for 15 minutes. It should pause by itself and send a notification. Open the app and check that the walk's time and distance match the walking you really did.</li>
+      <li><strong>Track distance.</strong> Train &rarr; CrossFit &rarr; turn on <strong>Track distance</strong> &rarr; start, and move around outdoors.</li>
+    </ol>
+
+    <h2>What to report back</h2>
+    <ul class="fp-rows">
+      <li>Your phone make, model and Android version (Settings &rarr; About phone).</li>
+      <li><strong>Workout bank</strong> A post that did not sort into blocks correctly. Send the post text and a screenshot of what the app made of it.</li>
+      <li><strong>Label reader and photo calories</strong> Any number that did not match the package or the plate (a photo helps), how long the reading took, and anything in the results that was confusing.</li>
+      <li><strong>Auto-pause</strong> Did a workout ever pause when you were still moving, or fail to pause when you drove off? What were you doing, and for how long?</li>
+      <li><strong>Freezes</strong> Any freeze, or an "isn't responding" message: how long the workout had been running, and a screenshot.</li>
+      <li><strong>Anything else</strong> Whatever looked cramped, cut off or confusing, with a screenshot, and any error message word for word.</li>
+    </ul>
+
+    <h2>Uninstall</h2>
+    <p>Long-press the FitnessPro icon, tap <strong>App info</strong>, then <strong>Uninstall</strong>. This deletes all of your FitnessPro data on the phone, so only do it when you are done testing.</p>
+  </div>
 </div>
 </body>
 </html>
