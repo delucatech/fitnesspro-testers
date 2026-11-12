@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>FitnessPro test build 1.5</title>
+<title>FitnessPro test build 1.7</title>
 <style>html,body{margin:0;background:#ffffff;}</style>
 </head>
 <body>
@@ -26,6 +26,8 @@
     .fp-install code { background: #eef1f4; padding: 1px 6px; border-radius: 4px; font-size: 0.95em; white-space: nowrap; }
     .fp-install strong { font-weight: 600; }
     .fp-install .fp-path { display: inline-block; background: #eef1f4; padding: 2px 8px; border-radius: 4px; }
+    .fp-install li > ul { margin: 8px 0 0; }
+    .fp-install li > ul > li { margin-bottom: 6px; }
     @media (min-width: 600px) {
       .fp-install { font-size: 16px; padding: 24px 16px; }
       .fp-install h1 { font-size: 1.8em; }
@@ -33,30 +35,57 @@
       .fp-install .fp-meta { text-align: left; }
     }
   </style>
-
-  <h1>FitnessPro test build 1.5 for Android</h1>
+  <h1>FitnessPro test build 1.7 for Android</h1>
   <p>Thanks for helping test FitnessPro. This is an early build that is not in the Play Store, so Android will show a few warnings along the way. That is expected and safe to accept.</p>
 
-  <a class="fp-download" href="https://github.com/delucatech/fitnesspro-testers/releases/download/v1.5/FitnessPro-1.5.apk">Download FitnessPro-1.5.apk</a>
-  <p class="fp-meta">Version 1.5 test build &middot; about 52 MB &middot; Android 8 or newer recommended</p>
+  <a class="fp-download" href="https://github.com/delucatech/fitnesspro-testers/releases/download/v1.7/FitnessPro-1.7.apk">Download FitnessPro-1.7.apk</a>
+  <p class="fp-meta">Version 1.7 test build &middot; about 54 MB &middot; Android 8 or newer recommended</p>
 
   <div class="fp-warn"><strong>Already have an earlier test build?</strong> Open the downloaded file and tap <strong>Update</strong>. It installs right over the old version and keeps your profile, workouts, foods and stacks. <strong>Do not uninstall first</strong>, or that data is gone.</div>
 
-  <h2>New since 1.4</h2>
+  <h2>Fixed since 1.5 (your feedback)</h2>
   <ul>
-    <li><strong>Workout by muscle.</strong> A 3D body you can turn and zoom. Tap a muscle (or pick a group and then a part from the chips) to see the exercises that work it, then tap an exercise to open it. The chosen group shows in bright red and the exact part in a darker red. Find it on Home (scroll down, under "Show me examples"), on Train &rarr; Start a workout, on Your workouts, and under More &rarr; Learn.</li>
-    <li><strong>Maintenance calories.</strong> A new page shows how many calories keep your weight steady, based on your weight, height, age and activity level, with a slider to eat less (up to 1,000 under) or more (up to 500 over). It shows where that takes you against your goal date, how to get back on track if you are behind, how the target steps down as you lose weight, and your weigh-in history. Open it from the new <strong>Calories</strong> card on Home, the Calories card on Health &rarr; Nutrition (tap <strong>Adjust</strong>), your goal page, Profile, or More.</li>
-    <li><strong>Meal planner.</strong> Health &rarr; Nutrition &rarr; <strong>Meal planner</strong>: build a typical day as Breakfast, Lunch, Dinner and Snack, and watch the running total against your maintenance and target calories, with protein, carbs and fat. <strong>Log these meals for today</strong> copies the plan into today&rsquo;s food log.</li>
-    <li><strong>My meals.</strong> Health &rarr; Nutrition &rarr; <strong>My meals</strong>: save your own meals with calories, protein, carbs and fat (leave calories empty and they are worked out). Your meals show as one-tap choices when you log food or plan a meal. "Favourites" is now called My meals.</li>
-    <li><strong>Calories from a photo.</strong> In Add food and in the planner, <strong>Take photo</strong> or <strong>Choose photo</strong> of your plate. The app suggests a name, calories and macros for you to check and change; nothing is saved until you tap Save or Add. The photo is sent to Google Gemini for the estimate and is not kept in the app, so this needs an internet connection.</li>
+    <li><strong>A walk no longer "disappears" when you leave the app.</strong> Before, pressing Back during a workout closed the screen, and reopening the app started on Home with no sign of the workout, even though it was still recording in the background (one walk ran for 7 hours this way). Now Back only puts the app in the background, and whenever the app is opened while a workout is recording it goes straight to that workout.</li>
+    <li><strong>A forgotten workout now stops itself.</strong>
+      <ul>
+        <li><strong>Driving:</strong> if a walk, hike or run is still recording when you drive off, it pauses after about a minute at driving speed, takes the drive off the workout and sends a "paused" notification. If you do not resume it within 20 minutes, it saves itself.</li>
+        <li><strong>Standing still:</strong> if an outdoor workout shows no movement for 10 minutes, it pauses. It resumes by itself when you move again and takes the idle minutes off. If you never stopped, tap <strong>Resume</strong> and nothing is removed. Left alone for an hour, it saves itself.</li>
+        <li><strong>Very long workouts:</strong> after 3 hours of recording (longer for hikes and rides) you get a "still recording?" reminder.</li>
+      </ul>
+    </li>
+    <li><strong>No more frozen screen or "FitnessPro isn't responding" on long workouts.</strong> The app was redrawing the whole GPS route every second, and after a long recording that locked the screen. Long workouts now stay responsive, and so does opening them afterwards.</li>
+    <li><strong>A workout survives the app being restarted.</strong> If Android restarts the app in the middle of a workout, the Train tab picks the workout up again instead of offering to start a new one.</li>
+    <li><strong>GPS comes back by itself.</strong> Switching Location off and on during a workout used to stop distance for the rest of that workout. It now picks up again within a few seconds.</li>
   </ul>
 
-  <h2>Fixed since 1.4</h2>
+  <h2>New in 1.7</h2>
   <ul>
-    <li><strong>Health tab buttons.</strong> "Supplements" no longer wraps onto two lines on smaller phones; the section buttons size to their text.</li>
-    <li><strong>Cut-off chips.</strong> Rows of chips (for example the sport chips on Train) no longer clip the row with the selected chip.</li>
-    <li><strong>Camera on newer Android.</strong> The camera option now shows on Android 11 and newer, for the food photo and for your profile picture.</li>
-    <li><strong>American spelling</strong> throughout (favorite, color, canceled and so on).</li>
+    <li><strong>Workout bank</strong> (Train &rarr; <strong>Workouts</strong>). Build a workout out of blocks such as a primer, a strength piece and a finisher. Each block can have a <strong>Base</strong>, a <strong>Scaled</strong> and a <strong>No equipment</strong> version, and the person doing the workout picks the level.
+      <ul>
+        <li><strong>Paste a class post.</strong> In a new workout, paste the text of a post into the paste box and tap <strong>Add blocks</strong>. Headings such as "Primer 3 Rds" or "4 RFT", and "Scaling" and "No Equipment Option" sections, are sorted into blocks for you.</li>
+        <li><strong>Post a workout for a day.</strong> Open a workout and tap <strong>Post for today</strong>, or pick another day. It shows on Home as <strong>Today's workout</strong> and on that day in the Calendar.</li>
+        <li><strong>Reuse.</strong> Save blocks and movements to the bank, give movements a video link, and start a timer straight from a block.</li>
+      </ul>
+    </li>
+    <li><strong>Label reader</strong> (Home &rarr; <strong>Scan a food label</strong>, or Health &rarr; Nutrition &rarr; <strong>Label reader</strong>). Take one photo of a package with the Nutrition Facts panel and the ingredient list in it. You get calories and macros at a glance, rings for saturated fat, sodium, added sugar and fiber, a protein quality score, fat quality, and notes on the ingredients.
+      <ul>
+        <li><strong>I ate this &middot; Add to today</strong> puts it in today's food log and keeps it for next time.</li>
+        <li><strong>Save for later</strong> only keeps the product. Today's totals do not change.</li>
+        <li>Saved products are listed under <strong>Previously scanned</strong> in the label reader and under Health &rarr; Nutrition &rarr; <strong>Scanned labels</strong>, so a regular snack can be added again without a photo.</li>
+      </ul>
+    </li>
+    <li><strong>Calendar.</strong> Days with a posted workout have a small ring in the month view, and the arrows in the day view now go forward up to 90 days, so tomorrow's workout can be posted ahead of time.</li>
+    <li><strong>At a glance moved up.</strong> Heart rate, Sleep, VO<sub>2</sub> max and Badges now sit near the top of Home, under Today.</li>
+    <li><strong>Timers are easy to find.</strong> On the Train tab there are three buttons under the workout types: <strong>Timers</strong> (For time, AMRAP, EMOM, Tabata, Intervals), <strong>Workouts</strong> and <strong>By muscle</strong>.</li>
+    <li><strong>Track distance for any workout.</strong> Pick a workout that normally has no GPS (CrossFit, Strength &amp; conditioning, HIIT and so on) and a <strong>Track distance</strong> switch appears. Turn it on to record the route, distance, speed and ascent, for example for a workout with runs in it. It is off by default and remembers your choice. It is meant for outdoors: indoors, GPS drifts and can invent distance.</li>
+  </ul>
+
+  <div class="fp-tip">The label reader and calories from a photo need an internet connection. The photo is sent to Google Gemini to be read, and a reading usually takes 5 to 30 seconds. Readings come from a photo, so compare them with the package.</div>
+
+  <h2>Still in from 1.5</h2>
+  <ul>
+    <li><strong>Workout by muscle</strong>: the 3D body that lists exercises for the muscle you tap.</li>
+    <li><strong>Maintenance calories</strong>, the <strong>Meal planner</strong>, <strong>My meals</strong> and <strong>calories from a photo</strong> under Health &rarr; Nutrition.</li>
   </ul>
 
   <h2>What you need</h2>
@@ -68,9 +97,10 @@
 
   <h2>Install</h2>
   <ol>
+    <li>If a workout is still recording in the old build, finish and save it first.</li>
     <li>Tap the download button above <strong>on your phone</strong>, in Chrome.</li>
     <li>If Chrome says "This type of file can harm your device", tap <strong>Download anyway</strong>.</li>
-    <li>When the download finishes, tap the download notification. If you missed it, open the <strong>Files</strong> app and tap <code>FitnessPro-1.5.apk</code> in Downloads.</li>
+    <li>When the download finishes, tap the download notification. If you missed it, open the <strong>Files</strong> app and tap <code>FitnessPro-1.7.apk</code> in Downloads.</li>
     <li>Android will say your phone is not allowed to install unknown apps from Chrome (or Files). Tap <strong>Settings</strong>, switch on <strong>Allow from this source</strong>, then press Back.</li>
     <li>Tap <strong>Update</strong> (or <strong>Install</strong> on a phone that never had the app).</li>
     <li>If Google Play Protect says "Unknown app" or suggests a scan, tap <strong>More details</strong> and then <strong>Install anyway</strong>. Letting it scan first is fine too.</li>
@@ -89,20 +119,23 @@
 
   <h2>What to try this round</h2>
   <ol>
-    <li><strong>Workout by muscle</strong> (Home, scroll down): drag to turn the body, pinch to zoom, use the turn-around button to see the back, tap a muscle, then pick a part from the chips. Open an exercise and come back. The body matches the sex in your profile.</li>
-    <li><strong>Calories card on Home</strong>: tap it. Check that the maintenance number looks right for you, move the slider, and see how the goal date line changes. Tap <strong>Log a weigh-in</strong> and check it appears in the history.</li>
-    <li>Health &rarr; Nutrition &rarr; <strong>My meals</strong>: create a meal with your own numbers, edit it, then log it from Add food with one tap.</li>
-    <li>Health &rarr; Nutrition &rarr; <strong>Meal planner</strong>: add a breakfast, lunch and dinner, check the total, then tap <strong>Log these meals for today</strong> and confirm they appear in today&rsquo;s log.</li>
-    <li>In Add food, tap <strong>Take photo</strong> and photograph a real meal (allow the camera when asked). Check the suggested name and numbers, correct them if needed, and save. Try <strong>Choose photo</strong> with a picture already in your gallery as well.</li>
-    <li>On the Health tab, check that all four section buttons (including Supplements) sit on one line.</li>
+    <li><strong>Paste a class workout.</strong> Train &rarr; <strong>Workouts</strong> &rarr; new workout. Paste one of your real posts into the paste box, tap <strong>Add blocks</strong>, check the blocks, and save. Did it sort the rounds, the scaled version and the no-equipment version the way you wrote them?</li>
+    <li><strong>Post it.</strong> Open the saved workout and tap <strong>Post for today</strong>. It should appear on Home as Today's workout. Then post one for tomorrow from the Calendar.</li>
+    <li><strong>Do it.</strong> Open today's workout, switch between Base, Scaled and No equipment, and start a timer from a block.</li>
+    <li><strong>Scan a label.</strong> Home &rarr; <strong>Scan a food label</strong> &rarr; <strong>Take photo</strong>. Try a protein bar or a cereal box. Compare the numbers with the package, then tap <strong>I ate this</strong> for one product and <strong>Save for later</strong> for another.</li>
+    <li><strong>Add a saved product again.</strong> Health &rarr; Nutrition &rarr; <strong>Scanned labels</strong>, and tap Add next to one.</li>
+    <li><strong>Leave and come back during a walk.</strong> Train &rarr; Walk &rarr; start. Press Back, or switch to your email or texts for a minute, and open FitnessPro again. You should land on the walk, with the time still counting.</li>
+    <li><strong>Forget a walk on purpose.</strong> At the end of an outdoor walk, do not finish it. Either get in the car and drive, or leave the phone on a table for 15 minutes. It should pause by itself and send a notification. Open the app and check that the walk's time and distance match the walking you really did.</li>
+    <li><strong>Track distance.</strong> Train &rarr; CrossFit &rarr; turn on <strong>Track distance</strong> &rarr; start, and move around outdoors.</li>
   </ol>
 
   <h2>What to report back</h2>
   <ul>
     <li>Your phone make, model and Android version (Settings &rarr; About phone).</li>
-    <li>Did the 3D body load, turn and respond to taps smoothly? Anything shaded oddly or hard to tap?</li>
-    <li>Did the Take photo button show up, and how close was the photo estimate to what you think the meal was? A screenshot of the result helps.</li>
-    <li>Did the maintenance calories and goal date make sense for you?</li>
+    <li><strong>Workout bank:</strong> a post that did not sort into blocks correctly. Send the post text and a screenshot of what the app made of it.</li>
+    <li><strong>Label reader:</strong> any number that did not match the package (a photo of the label helps), how long the reading took, and anything in the results that was confusing.</li>
+    <li><strong>Auto-pause:</strong> did a workout ever pause when you were still moving, or fail to pause when you drove off? What were you doing, and for how long?</li>
+    <li>Any freeze, or an "isn't responding" message: how long the workout had been running, and a screenshot.</li>
     <li>Anything that looked cramped, cut off or confusing, with a screenshot, and any error message word for word.</li>
   </ul>
 
