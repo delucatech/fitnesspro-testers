@@ -1,210 +1,326 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-os="both">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#0A0A0B">
-<meta name="color-scheme" content="dark">
-<title>FitnessPro test build 1.9</title>
-<style>html,body{margin:0;background:#0A0A0B;}</style>
+<meta name="theme-color" content="#0A0A0B" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F4F4F6" media="(prefers-color-scheme: light)">
+<meta name="color-scheme" content="dark light">
+<title>FitnessPro test build 1.10</title>
+<script>
+  // One page for both phones: decide which build to show before anything is drawn.
+  // "both" (a computer, or no script) shows the iPhone and the Android download together.
+  (function () {
+    var ua = navigator.userAgent || '';
+    var os = 'both';
+    if (/iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) os = 'ios';
+    else if (/Android/i.test(ua)) os = 'android';
+    document.documentElement.setAttribute('data-os', os);
+    document.documentElement.setAttribute('data-detected', os);
+  })();
+</script>
+<style>
+  @font-face { font-family: "Geist"; src: url("fonts/Geist-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "Geist"; src: url("fonts/Geist-Medium.ttf") format("truetype"); font-weight: 500; font-display: swap; }
+  @font-face { font-family: "Geist"; src: url("fonts/Geist-SemiBold.ttf") format("truetype"); font-weight: 600; font-display: swap; }
+  @font-face { font-family: "Geist Mono"; src: url("fonts/GeistMono-Medium.ttf") format("truetype"); font-weight: 500; font-display: swap; }
+
+  /* Same tokens as the app: Resources/Styles/Colors.xaml (dark) and ColorsLight.xaml (light). */
+  :root {
+    --bg: #0A0A0B; --surface: #141416; --elevated: #1C1C1F; --border: #2A2A2E; --border-strong: #3A3A40;
+    --text: #F5F5F7; --text-2: #A1A1AA; --text-3: #8A8A93;
+    --accent: #D4FF3A; --accent-fill: #D4FF3A; --on-accent: #0A0A0B;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #F4F4F6; --surface: #FFFFFF; --elevated: #ECECEF; --border: #DEDEE3; --border-strong: #C6C6CD;
+      --text: #111113; --text-2: #52525B; --text-3: #62626B;
+      --accent: #4A6E00; --accent-fill: #D4FF3A; --on-accent: #0A0A0B;
+      color-scheme: light;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); }
+  body {
+    padding: 28px 20px 56px; color: var(--text-2);
+    font-family: "Geist", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.55;
+    -webkit-text-size-adjust: 100%; overflow-wrap: anywhere; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  strong { font-weight: 600; color: var(--text); }
+  p { margin: 0 0 12px; }
+  .mono { font-family: "Geist Mono", ui-monospace, Menlo, Consolas, monospace; color: var(--text); }
+
+  .overline { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); margin: 0; }
+  .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+  .brand-mark { width: 36px; height: 36px; border-radius: 999px; background: var(--accent-fill); color: var(--on-accent); display: grid; place-items: center; font-weight: 600; font-size: 15px; }
+  .brand-name { color: var(--text); font-weight: 600; font-size: 17px; }
+  h1 { font-size: 34px; line-height: 1.12; font-weight: 600; letter-spacing: -0.02em; color: var(--text); margin: 8px 0 16px; text-wrap: balance; }
+  h1 .num { font-family: "Geist Mono", ui-monospace, Menlo, Consolas, monospace; font-weight: 500; color: var(--accent); letter-spacing: -0.04em; }
+  h2 { font-size: 22px; line-height: 1.25; font-weight: 600; letter-spacing: -0.01em; color: var(--text); margin: 40px 0 6px; text-wrap: balance; }
+  .lead { max-width: 60ch; }
+
+  /* Which phone: picked for the visitor, and they can switch. */
+  html[data-os="ios"] .os-android, html[data-os="android"] .os-ios { display: none !important; }
+  html:not([data-os="both"]) .os-both { display: none !important; }
+  .os-switch { display: inline-flex; padding: 4px; gap: 4px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); }
+  .os-switch button { min-height: 44px; min-width: 104px; padding: 8px 20px; border: 0; border-radius: 999px; background: none; color: var(--text-2); font: inherit; font-weight: 500; font-size: 15px; cursor: pointer; }
+  .os-switch button[aria-pressed="true"] { background: var(--elevated); color: var(--text); box-shadow: inset 0 0 0 1px var(--border-strong); }
+  .os-switch button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .os-note { font-size: 13px; margin: 10px 0 0; }
+
+  .get { margin: 20px 0 0; }
+  html[data-os="both"] .get { padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+  html[data-os="both"] .get + .get { margin-top: 12px; }
+  .get .lead { margin: 8px 0 0; }
+  html:not([data-os="both"]) .get .overline { display: none; }
+  .download { display: flex; align-items: center; justify-content: center; min-height: 56px; width: 100%; padding: 14px 28px; border-radius: 999px; background: var(--accent-fill); color: var(--on-accent); font-weight: 600; font-size: 16px; text-decoration: none; margin: 18px 0 10px; transition: transform 150ms ease-out; }
+  .download:active { transform: scale(0.97); }
+  .download:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+  .meta { font-size: 13px; text-align: center; margin: 0; }
+
+  /* Rows inside a card, like the app's stat rows: hairline between items */
+  .rows { list-style: none; margin: 16px 0; padding: 2px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+  .rows > li { padding: 14px 0; border-top: 1px solid var(--border); }
+  .rows > li:first-child { border-top: 0; }
+  .rows > li > strong:first-of-type { display: block; margin-bottom: 2px; }
+  .where { display: block; font-size: 13px; color: var(--text-3); margin-bottom: 4px; }
+
+  /* Numbered steps */
+  .steps { list-style: none; counter-reset: step; margin: 16px 0; padding: 2px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+  .steps > li { counter-increment: step; position: relative; padding: 14px 0 14px 44px; border-top: 1px solid var(--border); }
+  .steps > li:first-child { border-top: 0; }
+  .steps > li::before { content: counter(step); position: absolute; left: 0; top: 12px; width: 30px; height: 30px; border-radius: 999px; background: var(--elevated); border: 1px solid var(--border); color: var(--accent); font-family: "Geist Mono", ui-monospace, Menlo, Consolas, monospace; font-weight: 500; font-size: 13px; display: grid; place-items: center; }
+  code { font-family: "Geist Mono", ui-monospace, Menlo, Consolas, monospace; font-size: 0.9em; background: var(--elevated); border: 1px solid var(--border); color: var(--text); padding: 1px 6px; border-radius: 6px; white-space: nowrap; }
+
+  /* Screenshots: a swipeable row on phones, a grid on wider screens */
+  .group { display: flex; align-items: baseline; justify-content: flex-end; margin: 4px 0 10px; min-height: 18px; }
+  .swipe { font-size: 13px; color: var(--text-3); }
+  .shots { display: flex; gap: 12px; margin: 0 -20px; padding: 0 20px 6px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 20px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .shots::-webkit-scrollbar { display: none; }
+  .shots figure { flex: 0 0 64%; max-width: 250px; margin: 0; scroll-snap-align: start; }
+  .shots a { display: block; border-radius: 24px; }
+  .shots a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .shots img { display: block; width: 100%; height: auto; aspect-ratio: 600 / 1149; border-radius: 24px; border: 1px solid var(--border); background: var(--surface); }
+  .shots figcaption { padding: 10px 2px 0; font-size: 15px; font-weight: 500; color: var(--text); }
+
+  /* Folded sections: everything a returning tester has already seen */
+  .more { margin: 40px 0 0; border: 1px solid var(--border); border-radius: 16px; background: var(--surface); overflow: hidden; }
+  .more details { border-top: 1px solid var(--border); }
+  .more details:first-child { border-top: 0; }
+  .more summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 56px; padding: 12px 16px; cursor: pointer; list-style: none; color: var(--text); font-weight: 500; }
+  .more summary::-webkit-details-marker { display: none; }
+  .more summary::after { content: ""; flex: none; width: 8px; height: 8px; margin-right: 4px; border-right: 2px solid var(--text-3); border-bottom: 2px solid var(--text-3); transform: rotate(45deg); transition: transform 180ms ease-out; }
+  .more details[open] summary::after { transform: rotate(225deg); }
+  .more summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .more .body { padding: 0 16px 16px; font-size: 15px; }
+  .more .body > :last-child { margin-bottom: 0; }
+  .more .steps, .more .rows { margin: 4px 0 0; padding: 0; background: none; border: 0; border-radius: 0; }
+  .more h3 { font-size: 15px; font-weight: 600; color: var(--text); margin: 16px 0 4px; }
+  .more h3:first-child { margin-top: 0; }
+
+  @media (min-width: 700px) {
+    body { padding: 48px 24px 72px; }
+    h1 { font-size: 44px; }
+    .download { width: auto; display: inline-flex; padding: 14px 36px; }
+    .meta { text-align: left; }
+    .group { display: none; }
+    .shots { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px 14px; margin: 12px 0 0; padding: 0; overflow: visible; }
+    .shots figure { max-width: none; }
+    .shots img, .shots a { border-radius: 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .download, .more summary::after { transition: none; } }
+</style>
 </head>
 <body>
-<div class="fp-install">
-  <style>
-    @font-face { font-family: "Geist"; src: url("fonts/Geist-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
-    @font-face { font-family: "Geist"; src: url("fonts/Geist-Medium.ttf") format("truetype"); font-weight: 500; font-display: swap; }
-    @font-face { font-family: "Geist"; src: url("fonts/Geist-SemiBold.ttf") format("truetype"); font-weight: 600; font-display: swap; }
-    @font-face { font-family: "Geist Mono"; src: url("fonts/GeistMono-Medium.ttf") format("truetype"); font-weight: 500; font-display: swap; }
+<div class="wrap">
+  <div class="brand"><span class="brand-mark" aria-hidden="true">F</span><span class="brand-name">FitnessPro</span></div>
 
-    /* Same tokens as the app: Resources/Styles/Colors.xaml */
-    .fp-install {
-      --bg: #0A0A0B; --surface: #141416; --elevated: #1C1C1F; --border: #2A2A2E; --border-strong: #3A3A40;
-      --text: #F5F5F7; --text-2: #A1A1AA; --text-3: #8A8A93;
-      --accent: #D4FF3A; --on-accent: #0A0A0B;
-      box-sizing: border-box; width: 100%; margin: 0 auto; padding: 28px 20px 56px; background: var(--bg); color: var(--text-2);
-      font-family: "Geist", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.55;
-      -webkit-text-size-adjust: 100%; overflow-wrap: anywhere; -webkit-font-smoothing: antialiased; color-scheme: dark;
-    }
-    .fp-install *, .fp-install *::before, .fp-install *::after { box-sizing: inherit; }
-    .fp-install .fp-wrap { max-width: 720px; margin: 0 auto; }
-    .fp-install strong { font-weight: 600; color: var(--text); }
-    .fp-install p { margin: 0 0 12px; }
+  <p class="overline">Test build</p>
+  <h1>FitnessPro <span class="num">1.10</span></h1>
 
-    .fp-install .fp-overline { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); margin: 0; }
-    .fp-install .fp-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; }
-    .fp-install .fp-brand-mark { width: 36px; height: 36px; border-radius: 999px; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; font-weight: 600; font-size: 15px; }
-    .fp-install .fp-brand-name { color: var(--text); font-weight: 600; font-size: 17px; }
-    .fp-install h1 { font-size: 34px; line-height: 1.12; font-weight: 600; letter-spacing: -0.02em; color: var(--text); margin: 8px 0 12px; text-wrap: balance; }
-    .fp-install h1 .fp-num { font-family: "Geist Mono", ui-monospace, Consolas, monospace; font-weight: 500; color: var(--accent); letter-spacing: -0.04em; }
-    .fp-install .fp-lead { font-size: 16px; max-width: 60ch; }
-    .fp-install h2 { font-size: 22px; line-height: 1.25; font-weight: 600; letter-spacing: -0.01em; color: var(--text); margin: 40px 0 6px; text-wrap: balance; }
+  <div class="os-switch" role="group" aria-label="Which phone you have">
+    <button type="button" data-set-os="ios" aria-pressed="false">iPhone</button>
+    <button type="button" data-set-os="android" aria-pressed="false">Android</button>
+  </div>
+  <p class="os-note" id="os-note">Open this page on your phone and it shows the right download. Or pick your phone above.</p>
 
-    .fp-install .fp-download { display: flex; align-items: center; justify-content: center; min-height: 56px; width: 100%; padding: 14px 28px; border-radius: 999px; background: var(--accent); color: var(--on-accent); font-weight: 600; font-size: 16px; text-decoration: none; margin: 22px 0 10px; transition: transform 150ms ease-out; }
-    .fp-install .fp-download:active { transform: scale(0.97); }
-    .fp-install .fp-download:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
-    .fp-install .fp-meta { font-size: 13px; text-align: center; margin: 0; }
-    .fp-install .fp-meta span { font-family: "Geist Mono", ui-monospace, Consolas, monospace; color: var(--text); }
+  <!-- iPhone -->
+  <section class="get os-ios" aria-label="iPhone download">
+    <p class="overline">iPhone and iPad</p>
+    <p class="lead">Open this page in <strong>Safari</strong> and tap Install. It installs over the build you have and keeps your data.</p>
+    <a class="download" href="itms-services://?action=download-manifest&amp;url=https://delucatech.github.io/fitnesspro-testers/ios/manifest.plist">Install on this iPhone</a>
+    <p class="meta">Build <span class="mono" data-ios="build">20261121-1500</span> &middot; about <span class="mono"><span data-ios="sizeMb">33</span> MB</span> &middot; iOS 15 or newer</p>
+  </section>
 
-    /* Rows inside a card, like the app's stat rows: hairline between items */
-    .fp-install .fp-rows { list-style: none; margin: 16px 0; padding: 2px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
-    .fp-install .fp-rows > li { padding: 14px 0; border-top: 1px solid var(--border); }
-    .fp-install .fp-rows > li:first-child { border-top: 0; }
-    .fp-install .fp-rows > li > strong:first-of-type { display: block; margin-bottom: 2px; }
-    .fp-install .fp-where { display: block; font-size: 13px; color: var(--text-3); margin-bottom: 4px; }
+  <!-- Android -->
+  <section class="get os-android" aria-label="Android download">
+    <p class="overline">Android</p>
+    <p class="lead">Download it, open the file and tap <strong>Update</strong>. It installs over the build you have and keeps your data.</p>
+    <a class="download" href="https://github.com/delucatech/fitnesspro-testers/releases/download/v1.10/FitnessPro-1.10.apk">Download FitnessPro-1.10.apk</a>
+    <p class="meta">Version <span class="mono">1.10</span> &middot; about <span class="mono">66 MB</span> &middot; Android 6 or newer</p>
+  </section>
 
-    /* Numbered steps */
-    .fp-install .fp-steps { list-style: none; counter-reset: step; margin: 16px 0; padding: 2px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
-    .fp-install .fp-steps > li { counter-increment: step; position: relative; padding: 14px 0 14px 44px; border-top: 1px solid var(--border); }
-    .fp-install .fp-steps > li:first-child { border-top: 0; }
-    .fp-install .fp-steps > li::before { content: counter(step); position: absolute; left: 0; top: 12px; width: 30px; height: 30px; border-radius: 999px; background: var(--elevated); border: 1px solid var(--border); color: var(--accent); font-family: "Geist Mono", ui-monospace, Consolas, monospace; font-weight: 500; font-size: 13px; display: grid; place-items: center; }
-    .fp-install code { font-family: "Geist Mono", ui-monospace, Consolas, monospace; font-size: 0.9em; background: var(--elevated); border: 1px solid var(--border); color: var(--text); padding: 1px 6px; border-radius: 6px; white-space: nowrap; }
+  <h2>What's new</h2>
+  <ul class="rows">
+    <li><span class="where">More &rarr; Appearance</span><strong>Light and dark</strong> Pick Light or Dark, or let the app follow your phone.</li>
+    <li><span class="where">Health &rarr; Doses</span><strong>Peptide tracker</strong> For a GLP-1 or another peptide: your schedule, one-tap shots, estimated levels and injection sites.</li>
+    <li><span class="where">Home</span><strong>A Home you can arrange</strong> A calories ring, calories burned and steps come first. Tap Customize dashboard at the bottom to choose the cards.</li>
+    <li><span class="where">Health &rarr; Add food</span><strong>Quicker Add food</strong> Photo, label scan and barcode sit at the top, your saved meals are one tap away, and every entry has fiber.</li>
+    <li><span class="where">More &rarr; Maintenance calories</span><strong>Body fat</strong> Add your body fat for a closer maintenance number. It can also come in from <span class="os-ios">Apple Health</span><span class="os-both"> or </span><span class="os-android">Health Connect</span>.</li>
+    <li><span class="where">Home &middot; Steps</span><strong>Live steps</strong> With <span class="os-ios">Apple Health</span><span class="os-both"> or </span><span class="os-android">Health Connect</span> connected, steps count up while the app is open.</li>
+  </ul>
 
-    /* Screenshots: a swipeable row on phones, a grid on wider screens */
-    .fp-install .fp-group { display: flex; align-items: baseline; justify-content: flex-end; margin: 4px 0 10px; min-height: 18px; }
-    .fp-install .fp-swipe { font-size: 13px; color: var(--text-3); }
-    .fp-install .fp-shots { display: flex; gap: 12px; margin: 0 -20px; padding: 0 20px 6px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 20px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-    .fp-install .fp-shots::-webkit-scrollbar { display: none; }
-    .fp-install .fp-shots figure { flex: 0 0 64%; max-width: 250px; margin: 0; scroll-snap-align: start; }
-    .fp-install .fp-shots a { display: block; border-radius: 24px; }
-    .fp-install .fp-shots a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-    .fp-install .fp-shots img { display: block; width: 100%; height: auto; aspect-ratio: 600 / 1008; border-radius: 24px; border: 1px solid var(--border); background: var(--surface); }
-    .fp-install .fp-shots figcaption { padding: 10px 2px 0; font-size: 15px; font-weight: 500; color: var(--text); }
+  <div class="group"><span class="swipe" aria-hidden="true">Swipe &rarr;</span></div>
+  <div class="shots" tabindex="0" role="group" aria-label="New screens in 1.10">
+    <figure>
+      <a href="img/appearance.webp"><img src="img/appearance.webp" width="600" height="1149" alt="The More tab in the light theme with the Appearance setting: System, Light and Dark, with Light selected."></a>
+      <figcaption>Light, dark or your phone's setting</figcaption>
+    </figure>
+    <figure>
+      <a href="img/train-light.webp"><img src="img/train-light.webp" width="600" height="1149" loading="lazy" alt="The Train tab in the light theme: activity types, Timers, Workouts and By muscle, and the start button."></a>
+      <figcaption>Train in light</figcaption>
+    </figure>
+    <figure>
+      <a href="img/peptides-dark.webp"><img src="img/peptides-dark.webp" width="600" height="1149" loading="lazy" alt="The peptide tracker's summary in the dark theme with sample data: days to the next shot and a chart of estimated levels."></a>
+      <figcaption>Peptide tracker</figcaption>
+    </figure>
+    <figure>
+      <a href="img/add-food.webp"><img src="img/add-food.webp" width="600" height="1149" loading="lazy" alt="The Add food sheet: Photo of food, Scan label and Barcode at the top, then saved meals with a plus button each."></a>
+      <figcaption>Quicker Add food</figcaption>
+    </figure>
+  </div>
 
-    /* Folded sections: everything a returning tester has already seen */
-    .fp-install .fp-more { margin: 40px 0 0; border: 1px solid var(--border); border-radius: 16px; background: var(--surface); overflow: hidden; }
-    .fp-install .fp-more details { border-top: 1px solid var(--border); }
-    .fp-install .fp-more details:first-child { border-top: 0; }
-    .fp-install .fp-more summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 56px; padding: 12px 16px; cursor: pointer; list-style: none; color: var(--text); font-weight: 500; }
-    .fp-install .fp-more summary::-webkit-details-marker { display: none; }
-    .fp-install .fp-more summary::after { content: ""; flex: none; width: 8px; height: 8px; margin-right: 4px; border-right: 2px solid var(--text-3); border-bottom: 2px solid var(--text-3); transform: rotate(45deg); transition: transform 180ms ease-out; }
-    .fp-install .fp-more details[open] summary::after { transform: rotate(225deg); }
-    .fp-install .fp-more summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-    .fp-install .fp-more .fp-body { padding: 0 16px 16px; font-size: 15px; }
-    .fp-install .fp-more .fp-body > :last-child { margin-bottom: 0; }
-    .fp-install .fp-more .fp-steps, .fp-install .fp-more .fp-rows { margin: 4px 0 0; padding: 0; background: none; border: 0; border-radius: 0; }
-    .fp-install .fp-more h3 { font-size: 15px; font-weight: 600; color: var(--text); margin: 16px 0 4px; }
-    .fp-install .fp-more h3:first-child { margin-top: 0; }
+  <h2>What to try</h2>
+  <ol class="steps">
+    <li><strong>Switch to Light</strong> under More &rarr; Appearance and look around. Anything hard to read?</li>
+    <li><strong>Open the peptide tracker</strong> from Health &rarr; Doses. Set it up, or tap Explore with sample data.</li>
+    <li><strong>Arrange Home</strong> with Customize dashboard, then add a food from the new sheet.</li>
+  </ol>
+  <p>Send anything that looks wrong with a screenshot and your phone model. The bottom of the More tab shows which build you have.</p>
 
-    @media (min-width: 700px) {
-      .fp-install { padding: 48px 24px 72px; }
-      .fp-install h1 { font-size: 44px; }
-      .fp-install .fp-download { width: auto; display: inline-flex; padding: 14px 36px; }
-      .fp-install .fp-meta { text-align: left; }
-      .fp-install .fp-group { display: none; }
-      .fp-install .fp-shots { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px 14px; margin: 12px 0 0; padding: 0; overflow: visible; }
-      .fp-install .fp-shots figure { max-width: none; }
-      .fp-install .fp-shots img, .fp-install .fp-shots a { border-radius: 18px; }
-    }
-    @media (prefers-reduced-motion: reduce) { .fp-install .fp-download, .fp-install .fp-more summary::after { transition: none; } }
-  </style>
-
-  <div class="fp-wrap">
-    <div class="fp-brand"><span class="fp-brand-mark" aria-hidden="true">F</span><span class="fp-brand-name">FitnessPro</span></div>
-
-    <p class="fp-overline">Android test build</p>
-    <h1>FitnessPro <span class="fp-num">1.9</span></h1>
-    <p class="fp-lead">Download it, open the file and tap <strong>Update</strong>. It installs over the build you have and keeps your data.</p>
-
-    <a class="fp-download" href="https://github.com/delucatech/fitnesspro-testers/releases/download/v1.9/FitnessPro-1.9.apk">Download FitnessPro-1.9.apk</a>
-    <p class="fp-meta">Version <span>1.9</span> &middot; about <span>66 MB</span> &middot; Android 6 or newer</p>
-
-    <h2>What's new</h2>
-    <ul class="fp-rows">
-      <li><span class="fp-where">Health &rarr; Check-in</span><strong>Check in any time</strong> As often as you like. Each check-in keeps its time, and you can change or delete it.</li>
-      <li><span class="fp-where">Health &rarr; Doses</span><strong>After a dose</strong> See how your energy, appetite and mood move in the hours and days after each dose.</li>
-      <li><span class="fp-where">Health &rarr; Add food</span><strong>Food by time</strong> Log with the current time instead of a meal. Tap any entry to change it.</li>
-      <li><span class="fp-where">Health &rarr; Supplements &rarr; New stack</span><strong>Scan a supplement</strong> Scan the bottle or photograph its label and the items fill in.</li>
-      <li><span class="fp-where">Home &middot; More &rarr; Stats</span><strong>Steps and Progress</strong> A steps tile, a Steps screen, and a chart of weight, calories and activity together. Weight is now a slider.</li>
-    </ul>
-
-    <div class="fp-group"><span class="fp-swipe" aria-hidden="true">Swipe &rarr;</span></div>
-    <div class="fp-shots" tabindex="0" role="group" aria-label="New screens in 1.9">
-      <figure>
-        <a href="img/check-in.webp"><img src="img/check-in.webp" width="600" height="1008" alt="Check-in sheet with the current time and five one-to-five scales for energy, sleep, soreness, appetite and mood."></a>
-        <figcaption>Check in any time</figcaption>
-      </figure>
-      <figure>
-        <a href="img/check-in-day.webp"><img src="img/check-in-day.webp" width="600" height="1008" loading="lazy" alt="Two check-ins on one day, each with its time, and the day's average above them."></a>
-        <figcaption>The day's check-ins</figcaption>
-      </figure>
-      <figure>
-        <a href="img/food-time.webp"><img src="img/food-time.webp" width="600" height="1008" loading="lazy" alt="Add food sheet with By meal and By time, and a Use this time switch showing the current time."></a>
-        <figcaption>Food by time</figcaption>
-      </figure>
-      <figure>
-        <a href="img/supplement-scan.webp"><img src="img/supplement-scan.webp" width="600" height="1008" loading="lazy" alt="New stack sheet with the name, company and one item filled in from a barcode."></a>
-        <figcaption>Scan a supplement</figcaption>
-      </figure>
-    </div>
-
-    <h2>What to try</h2>
-    <ol class="fp-steps">
-      <li><strong>Check in two or three times in a day.</strong> If you log doses, open Health &rarr; Doses and look at After a dose.</li>
-      <li><strong>Add a food by time,</strong> then tap it and change it. Did the time and the numbers save?</li>
-      <li><strong>Scan a supplement bottle.</strong> Did it find it, and do the items match the label?</li>
-    </ol>
-    <p>Send anything that looks wrong with a screenshot and your phone model.</p>
-
-    <div class="fp-more">
-      <details>
-        <summary>How to install</summary>
-        <div class="fp-body">
-          <ol class="fp-steps">
-            <li>If a workout is still recording in the old build, finish and save it first.</li>
-            <li>Tap the download button <strong>on your phone</strong>, in Chrome. If Chrome warns about the file type, tap <strong>Download anyway</strong>.</li>
-            <li>Tap the download notification, or open <strong>Files</strong> and tap <code>FitnessPro-1.9.apk</code> in Downloads.</li>
-            <li>If Android says it cannot install unknown apps from Chrome or Files, tap <strong>Settings</strong>, switch on <strong>Allow from this source</strong>, then press Back.</li>
-            <li>Tap <strong>Update</strong>, or <strong>Install</strong> on a phone that never had the app.</li>
-            <li>If Play Protect says "Unknown app", tap <strong>More details</strong>, then <strong>Install anyway</strong>.</li>
-          </ol>
-          <p style="margin-top:12px"><strong>Do not uninstall first.</strong> Updating keeps your profile, workouts and foods. Uninstalling deletes them.</p>
-        </div>
-      </details>
-      <details>
-        <summary>First time on a new phone</summary>
-        <div class="fp-body">
-          <ol class="fp-steps">
-            <li>Go through the welcome and profile screens.</li>
-            <li>To pair a heart rate sensor, put it on, tap the <strong>heart icon</strong> at the top of Home, scan, and allow <strong>Nearby devices</strong> (or <strong>Location</strong> on Android 11 and older).</li>
-            <li>Pick your real sensor. Ignore the one named "(simulated)".</li>
-          </ol>
-          <p style="margin-top:12px">You need about 250 MB of free space. A Polar OH1, H9, H10 or any Bluetooth chest strap works.</p>
-        </div>
-      </details>
-      <details>
-        <summary>Good to know</summary>
-        <div class="fp-body">
-          <ul class="fp-rows">
-            <li><strong>Check-ins</strong> Ones you saved before this build show "No time". The day's average is what the charts and comparisons use.</li>
-            <li><strong>After a dose</strong> It needs a few check-ins around each dose before it calls anything out. It shows a pattern in your own log, not a cause, and it is not medical advice.</li>
-            <li><strong>Supplement scan</strong> Labels come from a free U.S. government database. A product can be missing or out of date, so the label wins. If it is not found, photograph the label.</li>
-            <li><strong>Barcodes for food</strong> Product data comes from Open Food Facts, a free database kept up by volunteers. If a product is not found, photograph the label instead.</li>
-            <li><strong>Health Connect</strong> Needs Android 14 or newer. What you typed in the app is never overwritten by imported data.</li>
-            <li><strong>AI features</strong> The label reader, calories from a photo and the supplement label photo need internet and send the photo to Google Gemini. A reading takes 5 to 30 seconds.</li>
-          </ul>
-        </div>
-      </details>
-      <details>
-        <summary>Earlier releases</summary>
-        <div class="fp-body">
-          <h3>1.8</h3>
-          <p>Barcode scanner for packaged food. A pace slider for your goal. Health Connect import on Android 14 or newer. A daily routine step in setup.</p>
-          <h3>1.7</h3>
-          <p>Workout bank with Base, Scaled and No equipment levels, and paste-in class posts. Label reader. Posted workouts on Home and the Calendar. Timers, Workouts and By muscle on the Train tab. Track distance for any workout.</p>
-          <p>Fixed: a walk "disappearing" when you left the app, frozen screens on long workouts, and forgotten workouts that kept recording. They now pause and save themselves.</p>
-          <h3>1.5</h3>
-          <p>Workout by muscle on a 3D body. Maintenance calories, Meal planner, My meals and calories from a photo.</p>
-        </div>
-      </details>
-      <details>
-        <summary>Uninstall</summary>
-        <div class="fp-body">
-          <p>Long-press the FitnessPro icon, tap <strong>App info</strong>, then <strong>Uninstall</strong>. This deletes all of your FitnessPro data on the phone, so only do it when you are done testing.</p>
-        </div>
-      </details>
-    </div>
+  <div class="more">
+    <details class="os-ios">
+      <summary>How to install on iPhone</summary>
+      <div class="body">
+        <ol class="steps">
+          <li><strong>Tap Install</strong>, then <strong>Install</strong> again when the iPhone asks.</li>
+          <li><strong>Go to the Home Screen.</strong> The FitnessPro icon fills in while it downloads, about a minute on Wi-Fi.</li>
+          <li><strong>Open FitnessPro.</strong> There is nothing to trust or switch on in Settings.</li>
+          <li><strong>Check the build.</strong> Open the More tab and scroll to the bottom. It should say <span class="mono">build <span data-ios="build">20261121-1500</span></span>.</li>
+        </ol>
+      </div>
+    </details>
+    <details class="os-ios">
+      <summary>iPhone: nothing happens, or "Unable to install"</summary>
+      <div class="body">
+        <p><strong>Nothing happens when you tap Install.</strong> Open the page in Safari itself. The browser inside Gmail, Messages or another app often blocks the install, so copy the link and paste it into Safari. After the first tap the page stays as it is; the download runs on the Home Screen.</p>
+        <p><strong>"Unable to install" or "integrity could not be verified".</strong> This build only installs on the iPhones and iPads registered for testing. A new device has to be added first, and then it needs a build made after that. To add one, send its identifier (UDID): with the iPhone plugged into a Mac, open Finder, select the iPhone, and tap the line under its name until the UDID shows.</p>
+      </div>
+    </details>
+    <details class="os-android">
+      <summary>How to install on Android</summary>
+      <div class="body">
+        <ol class="steps">
+          <li>If a workout is still recording in the old build, finish and save it first.</li>
+          <li>Tap the download button <strong>on your phone</strong>, in Chrome. If Chrome warns about the file type, tap <strong>Download anyway</strong>.</li>
+          <li>Tap the download notification, or open <strong>Files</strong> and tap <code>FitnessPro-1.10.apk</code> in Downloads.</li>
+          <li>If Android says it cannot install unknown apps from Chrome or Files, tap <strong>Settings</strong>, switch on <strong>Allow from this source</strong>, then press Back.</li>
+          <li>Tap <strong>Update</strong>, or <strong>Install</strong> on a phone that never had the app.</li>
+          <li>If Play Protect says "Unknown app", tap <strong>More details</strong>, then <strong>Install anyway</strong>.</li>
+        </ol>
+        <p style="margin-top:12px"><strong>Do not uninstall first.</strong> Updating keeps your profile, workouts and foods. Uninstalling deletes them.</p>
+      </div>
+    </details>
+    <details>
+      <summary>First time on a new phone</summary>
+      <div class="body">
+        <ol class="steps">
+          <li>Go through the welcome and profile screens.</li>
+          <li>To pair a heart rate sensor, put it on, tap the <strong>heart icon</strong> at the top of Home and scan. Allow Bluetooth when the phone asks<span class="os-android"> (<strong>Nearby devices</strong>, or <strong>Location</strong> on Android 11 and older)</span>.</li>
+          <li>Pick your real sensor. Ignore the one named "(simulated)".</li>
+        </ol>
+        <p style="margin-top:12px">A Polar OH1, H9, H10 or any Bluetooth chest strap works.<span class="os-android"> You need about 250 MB of free space.</span></p>
+      </div>
+    </details>
+    <details>
+      <summary>Good to know</summary>
+      <div class="body">
+        <ul class="rows">
+          <li><strong>Light theme</strong> It is new. The 3D body and the camera scanner stay dark on purpose. Changing the theme takes you back to the More tab.</li>
+          <li><strong>Peptide tracker</strong> Levels are an estimate from a model, not a measurement, and nothing in it is medical advice. Shots you log there also show under Health &rarr; Doses.</li>
+          <li><strong>Body fat</strong> If you connected <span class="os-ios">Apple Health</span><span class="os-both"> or </span><span class="os-android">Health Connect</span> before this build, body fat is a new permission. <span class="os-ios">On iPhone, disconnect and connect again in the app.</span> <span class="os-android">On Android, switch it on in Health Connect &rarr; App permissions &rarr; FitnessPro.</span></li>
+          <li><strong>After a dose</strong> It needs a few check-ins around each dose before it calls anything out. It shows a pattern in your own log, not a cause.</li>
+          <li><strong>Scans</strong> Food barcodes come from Open Food Facts and supplement labels from a free U.S. government database. A product can be missing or out of date, so the label wins.</li>
+          <li class="os-android"><strong>Health Connect</strong> Needs Android 14 or newer. What you typed in the app is never overwritten by imported data.</li>
+          <li><strong>AI features</strong> The label reader, calories from a photo and the supplement label photo need internet and send the photo to Google Gemini. A reading takes 5 to 30 seconds.</li>
+          <li class="os-ios"><strong>iPhone builds expire</strong> This build stops opening on August 28, 2027, when its signing runs out. A later build will replace it before then.</li>
+        </ul>
+      </div>
+    </details>
+    <details>
+      <summary>Earlier releases</summary>
+      <div class="body">
+        <h3>1.9</h3>
+        <p>Check in any time, each with its time. After a dose. Food by time. Scan a supplement. A Steps screen and a Progress chart; weight became a slider.</p>
+        <h3>1.8</h3>
+        <p>Barcode scanner for packaged food. A pace slider for your goal. Health import. A daily routine step in setup.</p>
+        <h3>1.7</h3>
+        <p>Workout bank with Base, Scaled and No equipment levels, and paste-in class posts. Label reader. Posted workouts on Home and the Calendar. Timers, Workouts and By muscle on the Train tab. Track distance for any workout.</p>
+        <p>Fixed: a walk "disappearing" when you left the app, frozen screens on long workouts, and forgotten workouts that kept recording. They now pause and save themselves.</p>
+        <h3>1.5</h3>
+        <p>Workout by muscle on a 3D body. Maintenance calories, Meal planner, My meals and calories from a photo.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Uninstall</summary>
+      <div class="body">
+        <p class="os-ios">iPhone: touch and hold the FitnessPro icon, tap <strong>Remove App</strong>, then <strong>Delete App</strong>.</p>
+        <p class="os-android">Android: long-press the FitnessPro icon, tap <strong>App info</strong>, then <strong>Uninstall</strong>.</p>
+        <p>This deletes all of your FitnessPro data on the phone, so only do it when you are done testing.</p>
+      </div>
+    </details>
   </div>
 </div>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var detected = root.getAttribute('data-detected') || 'both';
+    var buttons = document.querySelectorAll('[data-set-os]');
+    var note = document.getElementById('os-note');
+    var names = { ios: 'an iPhone or iPad', android: 'an Android phone' };
+
+    function show(os) {
+      root.setAttribute('data-os', os);
+      for (var i = 0; i < buttons.length; i++)
+        buttons[i].setAttribute('aria-pressed', String(buttons[i].getAttribute('data-set-os') === os));
+      if (os === 'both') note.textContent = 'Open this page on your phone and it shows the right download. Or pick your phone above.';
+      else if (os === detected) note.textContent = 'This looks like ' + names[os] + ', so this is your download.';
+      else if (detected === 'both') note.textContent = 'Open this page on your phone to install.';
+      else note.textContent = 'This looks like ' + names[detected] + '. This download will not install here.';
+    }
+    for (var i = 0; i < buttons.length; i++)
+      buttons[i].addEventListener('click', function () { show(this.getAttribute('data-set-os')); });
+    show(detected);
+
+    // iPhone builds come out more often than this page changes: the publish script writes ios/build.json,
+    // and the build stamp and size shown here follow it.
+    if (window.fetch) {
+      fetch('ios/build.json', { cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (b) {
+          if (!b) return;
+          var spots = document.querySelectorAll('[data-ios]');
+          for (var i = 0; i < spots.length; i++) {
+            var value = b[spots[i].getAttribute('data-ios')];
+            if (value !== undefined && value !== null && value !== '') spots[i].textContent = value;
+          }
+        })
+        .catch(function () { });
+    }
+  })();
+</script>
 </body>
 </html>
