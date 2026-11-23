@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#0A0A0B" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#F4F4F6" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="dark light">
-<title>FitnessPro test build 1.10</title>
+<title>FitnessPro test build 1.11</title>
 <script>
   // One page for both phones: decide which build to show before anything is drawn.
   // "both" (a computer, or no script) shows the iPhone and the Android download together.
@@ -139,7 +139,7 @@
   <div class="brand"><span class="brand-mark" aria-hidden="true">F</span><span class="brand-name">FitnessPro</span></div>
 
   <p class="overline">Test build</p>
-  <h1>FitnessPro <span class="num">1.10</span></h1>
+  <h1>FitnessPro <span class="num">1.11</span></h1>
 
   <div class="os-switch" role="group" aria-label="Which phone you have">
     <button type="button" data-set-os="ios" aria-pressed="false">iPhone</button>
@@ -152,53 +152,51 @@
     <p class="overline">iPhone and iPad</p>
     <p class="lead">Open this page in <strong>Safari</strong> and tap Install. It installs over the build you have and keeps your data.</p>
     <a class="download" href="itms-services://?action=download-manifest&amp;url=https://delucatech.github.io/fitnesspro-testers/ios/manifest.plist">Install on this iPhone</a>
-    <p class="meta">Build <span class="mono" data-ios="build">20261121-1500</span> &middot; about <span class="mono"><span data-ios="sizeMb">33</span> MB</span> &middot; iOS 15 or newer</p>
+    <p class="meta">Build <span class="mono" data-ios="build">20261123-1057</span> &middot; about <span class="mono"><span data-ios="sizeMb">33</span> MB</span> &middot; iOS 15 or newer</p>
   </section>
 
   <!-- Android -->
   <section class="get os-android" aria-label="Android download">
     <p class="overline">Android</p>
     <p class="lead">Download it, open the file and tap <strong>Update</strong>. It installs over the build you have and keeps your data.</p>
-    <a class="download" href="https://github.com/delucatech/fitnesspro-testers/releases/download/v1.10/FitnessPro-1.10.apk">Download FitnessPro-1.10.apk</a>
-    <p class="meta">Build <span class="mono">20261121-1617</span> &middot; about <span class="mono">66 MB</span> &middot; Android 6 or newer</p>
-    <p class="meta" style="margin-top:8px">Installed 1.10 already? If the bottom of the More tab shows a different build, download this one over it.</p>
+    <a class="download" href="https://github.com/delucatech/fitnesspro-testers/releases/download/v1.11/FitnessPro-1.11.apk">Download FitnessPro-1.11.apk</a>
+    <p class="meta">Build <span class="mono">20261123-1045</span> &middot; about <span class="mono">67 MB</span> &middot; Android 6 or newer</p>
   </section>
 
   <h2>What's new</h2>
   <ul class="rows">
-    <li><span class="where">More &rarr; Appearance</span><strong>Light and dark</strong> Pick Light or Dark, or let the app follow your phone.</li>
-    <li><span class="where">Health &rarr; Doses</span><strong>Peptide tracker</strong> For a GLP-1 or another peptide: your schedule, one-tap shots, estimated levels and injection sites.</li>
-    <li><span class="where">Home</span><strong>A Home you can arrange</strong> A calories ring, calories burned and steps come first. Tap Customize dashboard at the bottom to choose the cards.</li>
-    <li><span class="where">Health &rarr; Add food</span><strong>Quicker Add food</strong> Photo, label scan and barcode sit at the top, your saved meals are one tap away, and every entry has fiber.</li>
-    <li><span class="where">More &rarr; Maintenance calories</span><strong>Body fat</strong> Add your body fat for a closer maintenance number. It can also come in from <span class="os-ios">Apple Health</span><span class="os-both"> or </span><span class="os-android">Health Connect</span>.</li>
-    <li><span class="where">Home &middot; Steps</span><strong>Live steps</strong> With <span class="os-ios">Apple Health</span><span class="os-both"> or </span><span class="os-android">Health Connect</span> connected, steps count up while the app is open.</li>
+    <li><span class="where">Train &middot; runs, walks, rides</span><strong>Smoother routes</strong> Your route draws as a clean line with a truer distance, and standing at a light no longer adds to it. Routes you already recorded draw smoother too.</li>
+    <li><span class="where">More &rarr; Body and weight</span><strong>Body page</strong> Your weight, where you started, your highest and lowest, a chart and every weigh-in, in one place.</li>
+    <li><span class="where">Body &rarr; Add a past weight</span><strong>Weigh-ins for any date</strong> Add weights from before you had the app, and change or delete any weigh-in.</li>
+    <li><span class="where">Home</span><strong>Weigh in from Home</strong> On a weight goal, Home shows your latest weight with a Weigh in button.</li>
+    <li><span class="where">More &rarr; Appearance</span><strong>Dark from the start</strong> The app is dark unless you pick Light or System.</li>
   </ul>
 
   <div class="group"><span class="swipe" aria-hidden="true">Swipe &rarr;</span></div>
-  <div class="shots" tabindex="0" role="group" aria-label="New screens in 1.10">
+  <div class="shots" tabindex="0" role="group" aria-label="New screens in 1.11">
     <figure>
-      <a href="img/appearance.webp"><img src="img/appearance.webp" width="600" height="1149" alt="The More tab in the light theme with the Appearance setting: System, Light and Dark, with Light selected."></a>
-      <figcaption>Light, dark or your phone's setting</figcaption>
+      <a href="img/home-weight.webp"><img src="img/home-weight.webp" width="600" height="1149" alt="Home with sample data: the calories ring, then a Weight card showing 193.0 lb, when it was taken and a Weigh in again button."></a>
+      <figcaption>Weigh in from Home</figcaption>
     </figure>
     <figure>
-      <a href="img/train-light.webp"><img src="img/train-light.webp" width="600" height="1149" loading="lazy" alt="The Train tab in the light theme: activity types, Timers, Workouts and By muscle, and the start button."></a>
-      <figcaption>Train in light</figcaption>
+      <a href="img/body.webp"><img src="img/body.webp" width="600" height="1149" loading="lazy" alt="The Body page with sample data: the current weight and goal, Weigh in again and Add a past weight, and tiles for starting, change, highest, lowest, 7-day average and goal."></a>
+      <figcaption>Your weight in numbers</figcaption>
     </figure>
     <figure>
-      <a href="img/peptides-dark.webp"><img src="img/peptides-dark.webp" width="600" height="1149" loading="lazy" alt="The peptide tracker's summary in the dark theme with sample data: days to the next shot and a chart of estimated levels."></a>
-      <figcaption>Peptide tracker</figcaption>
+      <a href="img/weigh-ins.webp"><img src="img/weigh-ins.webp" width="600" height="1149" loading="lazy" alt="Further down the Body page with sample data: a chart of every weigh-in over four months and the list of weigh-ins, each with an edit button."></a>
+      <figcaption>Every weigh-in, any date</figcaption>
     </figure>
     <figure>
-      <a href="img/add-food.webp"><img src="img/add-food.webp" width="600" height="1149" loading="lazy" alt="The Add food sheet: Photo of food, Scan label and Barcode at the top, then saved meals with a plus button each."></a>
-      <figcaption>Quicker Add food</figcaption>
+      <a href="img/appearance-dark.webp"><img src="img/appearance-dark.webp" width="600" height="1149" loading="lazy" alt="The More tab in the dark theme with the Appearance setting: System, Light and Dark, with Dark selected."></a>
+      <figcaption>Dark from the start</figcaption>
     </figure>
   </div>
 
   <h2>What to try</h2>
   <ol class="steps">
-    <li><strong>Switch to Light</strong> under More &rarr; Appearance and look around. Anything hard to read?</li>
-    <li><strong>Open the peptide tracker</strong> from Health &rarr; Doses. Set it up, or tap Explore with sample data.</li>
-    <li><strong>Arrange Home</strong> with Customize dashboard, then add a food from the new sheet.</li>
+    <li><strong>Record a walk or a run</strong> with the phone in your pocket, then open it. Is the line smooth, and is the distance right?</li>
+    <li><strong>Open an older run or walk.</strong> Does its route look better than before?</li>
+    <li><strong>Add a past weight</strong> under More &rarr; Body and weight, then weigh in from Home.</li>
   </ol>
   <p>Send anything that looks wrong with a screenshot and your phone model. The bottom of the More tab shows which build you have.</p>
 
@@ -210,7 +208,7 @@
           <li><strong>Tap Install</strong>, then <strong>Install</strong> again when the iPhone asks.</li>
           <li><strong>Go to the Home Screen.</strong> The FitnessPro icon fills in while it downloads, about a minute on Wi-Fi.</li>
           <li><strong>Open FitnessPro.</strong> There is nothing to trust or switch on in Settings.</li>
-          <li><strong>Check the build.</strong> Open the More tab and scroll to the bottom. It should say <span class="mono">build <span data-ios="build">20261121-1500</span></span>.</li>
+          <li><strong>Check the build.</strong> Open the More tab and scroll to the bottom. It should say <span class="mono">build <span data-ios="build">20261123-1057</span></span>.</li>
         </ol>
       </div>
     </details>
@@ -227,7 +225,7 @@
         <ol class="steps">
           <li>If a workout is still recording in the old build, finish and save it first.</li>
           <li>Tap the download button <strong>on your phone</strong>, in Chrome. If Chrome warns about the file type, tap <strong>Download anyway</strong>.</li>
-          <li>Tap the download notification, or open <strong>Files</strong> and tap <code>FitnessPro-1.10.apk</code> in Downloads.</li>
+          <li>Tap the download notification, or open <strong>Files</strong> and tap <code>FitnessPro-1.11.apk</code> in Downloads.</li>
           <li>If Android says it cannot install unknown apps from Chrome or Files, tap <strong>Settings</strong>, switch on <strong>Allow from this source</strong>, then press Back.</li>
           <li>Tap <strong>Update</strong>, or <strong>Install</strong> on a phone that never had the app.</li>
           <li>If Play Protect says "Unknown app", tap <strong>More details</strong>, then <strong>Install anyway</strong>.</li>
@@ -250,7 +248,9 @@
       <summary>Good to know</summary>
       <div class="body">
         <ul class="rows">
-          <li><strong>Light theme</strong> It is new. The 3D body and the camera scanner stay dark on purpose. Changing the theme takes you back to the More tab.</li>
+          <li><strong>Routes</strong> The smoothing is new, so send a screenshot of any route that looks wrong. The distance saved at the end can differ by a few hundredths of a mile from the last number you saw while recording. An older activity keeps the distance it was saved with.</li>
+          <li><strong>Dark by default</strong> If you never picked a theme and your phone is in light mode, the app is now dark. Change it under More &rarr; Appearance. Changing the theme takes you back to the More tab.</li>
+          <li><strong>Past weights</strong> A past weight changes the charts and the Starting, Highest and Lowest tiles. It does not move your goal's start or today's calorie target.</li>
           <li><strong>Peptide tracker</strong> Levels are an estimate from a model, not a measurement, and nothing in it is medical advice. Shots you log there also show under Health &rarr; Doses.</li>
           <li><strong>Body fat</strong> If you connected <span class="os-ios">Apple Health</span><span class="os-both"> or </span><span class="os-android">Health Connect</span> before this build, body fat is a new permission. <span class="os-ios">On iPhone, disconnect and connect again in the app.</span> <span class="os-android">On Android, switch it on in Health Connect &rarr; App permissions &rarr; FitnessPro.</span></li>
           <li><strong>After a dose</strong> It needs a few check-ins around each dose before it calls anything out. It shows a pattern in your own log, not a cause.</li>
@@ -264,6 +264,8 @@
     <details>
       <summary>Earlier releases</summary>
       <div class="body">
+        <h3>1.10</h3>
+        <p>Light and dark themes. Peptide tracker. A Home you can arrange, with a calories ring and calories burned. Quicker Add food with fiber. Body fat for a closer maintenance number. Live steps.</p>
         <h3>1.9</h3>
         <p>Check in any time, each with its time. After a dose. Food by time. Scan a supplement. A Steps screen and a Progress chart; weight became a slider.</p>
         <h3>1.8</h3>
