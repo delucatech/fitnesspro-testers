@@ -152,7 +152,7 @@
     <p class="overline">iPhone and iPad</p>
     <p class="lead">Open this page in <strong>Safari</strong> and tap Install. It installs over the build you have and keeps your data.</p>
     <a class="download" href="itms-services://?action=download-manifest&amp;url=https://delucatech.github.io/fitnesspro-testers/ios/manifest.plist">Install on this iPhone</a>
-    <p class="meta">Build <span class="mono" data-ios="build">20261123-1637</span> &middot; about <span class="mono"><span data-ios="sizeMb">34</span> MB</span> &middot; iOS 15 or newer</p>
+    <p class="meta">Build <span class="mono" data-ios="build">20261124-1045</span> &middot; about <span class="mono"><span data-ios="sizeMb">34</span> MB</span> &middot; iOS 15 or newer</p>
   </section>
 
   <!-- Android -->
@@ -160,12 +160,17 @@
     <p class="overline">Android</p>
     <p class="lead">Download it, open the file and tap <strong>Update</strong>. It installs over the build you have and keeps your data.</p>
     <a class="download" href="https://github.com/delucatech/fitnesspro-testers/releases/download/v1.12/FitnessPro-1.12.apk">Download FitnessPro-1.12.apk</a>
-    <p class="meta">Build <span class="mono">20261123-1702</span> &middot; about <span class="mono">67 MB</span> &middot; Android 6 or newer</p>
+    <p class="meta">Build <span class="mono">20261124-0949</span> &middot; about <span class="mono">67 MB</span> &middot; Android 6 or newer</p>
   </section>
 
   <h2>What's new</h2>
   <ul class="rows">
-    <li><span class="where">Health &rarr; Doses &middot; new in this build</span><strong>One card for each medication</strong> Each one shows once, with its estimated level and next dose when the app can work them out. Tap it for its own page: schedule, charts and calendar.</li>
+    <li><span class="where">Your goal &middot; new in this build</span><strong>Pounds lost each week</strong> A bar for every week since your goal started. Loss per week shows your average from the first days on, instead of a dash.</li>
+    <li><span class="where">Your goal &rarr; Weight loss timeline &middot; new</span><strong>Everything on one timeline</strong> Your weight with your medications and supplements above it, and calories, steps and exercise below it. Days over your calorie target are red. Tap a day to read it and its week.</li>
+    <li><span class="where">Weight loss timeline &middot; new</span><strong>What moved with the scale</strong> Your weeks compared: fewer against more calories, more against less activity, and how much you lost in each.</li>
+    <li><span class="where">Your goal &rarr; Impact analysis &middot; new</span><strong>The summary first</strong> What your log shows is now at the top. Close it with the X; tap the line to bring it back.</li>
+    <li><span class="where">Goal setup &middot; Started</span><strong>When your goal started</strong> Set the start date of your goal. A weight goal then starts from your weigh-in on that day, and its charts follow.</li>
+    <li><span class="where">Health &rarr; Doses</span><strong>One card for each medication</strong> Each one shows once, with its estimated level and next dose when the app can work them out. Tap it for its own page: schedule, charts and calendar.</li>
     <li><span class="where">A medication's page &middot; the gear</span><strong>Remove a medication</strong> Delete one medication with its doses and schedule. Everything else stays.</li>
     <li><span class="where">A medication's page &middot; Today</span><strong>One set of numbers</strong> Weight, calories and protein come from your weight log and your food log, and a tap opens them.</li>
     <li><span class="where">Health &rarr; Doses &rarr; Add medication or supplement</span><strong>Pick it from a list</strong> Type a few letters and pick testosterone, a peptide, a GLP-1, an insulin or a supplement. The category, unit and route fill in. Anything not on the list can still be typed.</li>
@@ -179,6 +184,7 @@
 
   <h2>What to try</h2>
   <ol class="steps">
+    <li><strong>Open your goal, then Weight loss timeline.</strong> Do the weekly bars match how your weeks went? Tap a red calorie day or a big week.</li>
     <li><strong>Tap a medication</strong> under Health &rarr; Doses. Does its own page open, and do the level and next dose on the card look right?</li>
     <li><strong>Add what you take</strong> under Health &rarr; Doses: type a few letters, pick it, choose your days and switch on a reminder.</li>
     <li><strong>Set a start date in the past</strong> and fill in the past doses. Then tap the calendar button on the course and change one dose.</li>
@@ -194,7 +200,7 @@
           <li><strong>Tap Install</strong>, then <strong>Install</strong> again when the iPhone asks.</li>
           <li><strong>Go to the Home Screen.</strong> The FitnessPro icon fills in while it downloads, about a minute on Wi-Fi.</li>
           <li><strong>Open FitnessPro.</strong> There is nothing to trust or switch on in Settings.</li>
-          <li><strong>Check the build.</strong> Open the More tab and scroll to the bottom. It should say <span class="mono">build <span data-ios="build">20261123-1637</span></span>.</li>
+          <li><strong>Check the build.</strong> Open the More tab and scroll to the bottom. It should say <span class="mono">build <span data-ios="build">20261124-1045</span></span>.</li>
         </ol>
       </div>
     </details>
@@ -237,7 +243,8 @@
           <li><strong>Dose reminders</strong> Allow notifications when the phone asks. A dose set to log for you is logged the next time you open the app. <span class="os-android">On Android a reminder can arrive a few minutes late, and after restarting the phone the reminders come back once you open the app.</span> Courses you added before this build stay as they were until you edit them.</li>
           <li><strong>Doses</strong> The app records what you take. It never suggests a dose; the only amounts it offers are the strengths printed on a GLP-1 pen.</li>
           <li><strong>Locked phone</strong> <span class="os-ios">While a workout records with the phone locked, iPhone shows its blue location indicator.</span><span class="os-both"> </span><span class="os-android">A workout keeps recording with the screen off, as before.</span> Send a screenshot of any route that looks wrong.</li>
-          <li><strong>Past weights</strong> A past weight changes the charts and the Starting, Highest and Lowest tiles. It does not move your goal's start or today's calorie target.</li>
+          <li><strong>Past weights</strong> A past weight changes the charts and the Starting, Highest and Lowest tiles. A weigh-in on your goal's start date becomes the weight the goal starts from.</li>
+          <li><strong>Weight loss timeline</strong> A week without a weigh-in gets an even share of the change around it and is drawn faded. The week-by-week comparison needs a few weeks of weigh-ins and food logs, and it shows a pattern in your own log, not a cause.</li>
           <li><strong>Peptide tracker</strong> Levels are an estimate from a model, not a measurement, and nothing in it is medical advice. Shots you log there also show under Health &rarr; Doses.</li>
           <li><strong>Body fat</strong> If you connected <span class="os-ios">Apple Health</span><span class="os-both"> or </span><span class="os-android">Health Connect</span> before this build, body fat is a new permission. <span class="os-ios">On iPhone, disconnect and connect again in the app.</span> <span class="os-android">On Android, switch it on in Health Connect &rarr; App permissions &rarr; FitnessPro.</span></li>
           <li><strong>After a dose</strong> It needs a few check-ins around each dose before it calls anything out. It shows a pattern in your own log, not a cause.</li>
